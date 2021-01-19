@@ -1,18 +1,32 @@
 <template>
-  <div class="items">
-    <h1>Edit Item</h1>
-      <div class="form">
-        <div>
-          <input type="text" name="title" placeholder="TITLE" v-model="title">
-        </div>
-        <div>
-          <textarea rows="15" cols="15" placeholder="DESCRIPTION" v-model="description"></textarea>
-        </div>
-        <div>
-          <button class="app_item_btn" @click="updateItem">Update</button>
-        </div>
-      </div>
-      </div>
+<div>
+  <b-card bg-variant="light">
+    <b-form-group
+      label-cols-lg="3"
+      label="Details de l'item"
+      label-size="lg"
+      label-class="font-weight-bold pt-0"
+      class="mb-0"
+    >
+       <b-form-group
+        label="Titre:"
+        label-for="nested-titre"
+        label-cols-sm="4"
+        label-align-sm="right">
+               <b-form-input id="nested-titre" name="title" placeholder="TITLE" v-model="title"></b-form-input>
+      </b-form-group>
+      <b-form-group
+        label="Description:"
+        label-for="nested-description"
+        label-cols-sm="4"
+        label-align-sm="right">
+               <b-form-input id="nested-description" placeholder="DESCRIPTION" v-model="description"></b-form-input>
+      </b-form-group>
+      <b-button variant="primary" @click="updateItem">MAJ</b-button>
+    </b-form-group>
+  </b-card>
+</div>
+
 </template>
 
 <script>
