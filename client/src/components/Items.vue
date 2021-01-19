@@ -1,6 +1,8 @@
 <template>
   <div class="items">
+    <div class="title">
     <h1>Items</h1>
+    </div>
     <div v-if="items.length > 0" class="table-wrap">
     <b-table striped hover :items="items" :fields="fields" bordered head-variant="dark">
       <template #cell(action)="row">
@@ -55,6 +57,9 @@ export default {
 }
 </script>
 <style type="text/css">
+.title{
+  text-decoration: underline;
+}
 .table-wrap {
   width: 60%;
   margin: 0 auto;
