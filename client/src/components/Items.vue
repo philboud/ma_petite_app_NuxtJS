@@ -6,8 +6,11 @@
     <div v-if="items.length > 0" class="table-wrap">
     <b-table striped hover :items="items" :fields="fields" bordered head-variant="dark">
       <template #cell(action)="row">
-        <b-button @click="deleteItem(row)">Supp</b-button>
-              <b-button @click="editItem(row)">Edit</b-button>
+        <b-button variant="primary" @click="info(row.item, row.index, $event.target)" class="mr-1">
+          Détails
+        </b-button>
+        <b-button variant="primary" @click="editItem(row)">Edit</b-button>
+        <b-button variant="primary" @click="deleteItem(row)">Supp</b-button>
         </template>
     </b-table>
             <div>
@@ -20,6 +23,11 @@
         >Add Item</router-link
       >
     </div>
+    <div>
+<b-modal :id="infoModal.id" :title="infoModal.title" ok-only @hide="resetInfoModal">
+      <pre>{{ infoModal.content }}</pre>
+    </b-modal>
+    </div>
   </div>
 </template>
 
@@ -30,7 +38,12 @@ export default {
   data () {
     return {
       fields: ['title', 'description', 'action'],
-      items: []
+      items: [],
+      infoModal: {
+        id: 'info-modal',
+        title: '',
+        description: ''
+      }
     }
   },
   mounted () {
@@ -52,6 +65,15 @@ export default {
     editItem (row) {
       var id = row.item._id
       this.$router.push('items/' + id)
+    },
+    resetInfoModal () {
+      this.infoModal.title = ''
+      this.infoModal.content = ''
+    },
+    info (item, index, button) {
+      this.infoModal.title = `Détail de ` + item.title
+      this.infoModal.content = item.description
+      this.$root.$emit('bv::show::modal', this.infoModal.id, button)
     }
   }
 }
