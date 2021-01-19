@@ -2,30 +2,14 @@
   <div class="items">
     <h1>Items</h1>
     <div v-if="items.length > 0" class="table-wrap">
-      <div>
-        <router-link v-bind:to="{ name: 'NewItem' }" class=""
-          >Add Item</router-link
-        >
-      </div>
-      <table>
-        <tr>
-          <td>Title</td>
-          <td width="550">Description</td>
-          <td width="100" align="center">Action</td>
-        </tr>
-        <tr v-for="item in items" v-bind:key="item.id">
-          <td>{{ item.title }}</td>
-          <td>{{ item.description }}</td>
-          <td align="center">
-            <router-link
-              v-bind:to="{ name: 'EditItem', params: { id: item._id } }"
-              >Editer</router-link>
-                <a href="#" @click="deleteItem(item._id)">Supprimer</a>
-          </td>
-        </tr>
-      </table>
-          <div>
-          <button class="add_item_btn" @click="addItem">Ajouter un item</button>
+    <b-table striped hover :items="items" :fields="fields" bordered head-variant="dark">
+      <template #cell(action)="row">
+        <b-button @click="deleteItem(row)">Supp</b-button>
+              <b-button @click="editItem(row)">Edit</b-button>
+        </template>
+    </b-table>
+            <div>
+            <b-button variant="primary" @click="addItem">Ajouter un item</b-button>
         </div>
     </div>
     <div v-else>
@@ -43,6 +27,7 @@ export default {
   name: 'items',
   data () {
     return {
+      fields: ['title', 'description', 'action'],
       items: []
     }
   },
@@ -54,12 +39,17 @@ export default {
       const response = await ItemsService.fetchItems()
       this.items = response.data.items
     },
-    async deleteItem (id) {
+    async deleteItem (row) {
+      var id = row.item._id
+      this.items.splice(row.index, 1)
       await ItemsService.deleteItem(id)
-      this.$router.go()
     },
     addItem () {
       this.$router.push('/items/new')
+    },
+    editItem (row) {
+      var id = row.item._id
+      this.$router.push('items/' + id)
     }
   }
 }
@@ -69,45 +59,5 @@ export default {
   width: 60%;
   margin: 0 auto;
   text-align: center;
-}
-table th,
-table tr {
-  text-align: left;
-}
-table thead {
-  background: #f2f2f2;
-}
-table tr td {
-  padding: 10px;
-}
-table tr:nth-child(odd) {
-  background: #f2f2f2;
-}
-table tr:nth-child(1) {
-  background: #4d7ef7;
-  color: #fff;
-}
-a {
-  color: #4d7ef7;
-  text-decoration: none;
-}
-a.add_item_link {
-  background: #4d7ef7;
-  color: #fff;
-  padding: 10px 80px;
-  text-transform: uppercase;
-  font-size: 12px;
-  font-weight: bold;
-}
-.add_item_btn {
-  background: #4d7ef7;
-  color: #fff;
-  padding: 10px 80px;
-  text-transform: uppercase;
-  font-size: 12px;
-  font-weight: bold;
-  width: 520px;
-  border: none;
-  cursor: pointer;
 }
 </style>

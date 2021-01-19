@@ -13,16 +13,17 @@
         label-for="nested-titre"
         label-cols-sm="4"
         label-align-sm="right">
-               <b-form-input id="nested-titre" name="title" placeholder="TITLE" v-model="title"></b-form-input>
+               <b-form-input id="nested-titre" name="title"  v-model="title"></b-form-input>
       </b-form-group>
       <b-form-group
         label="Description:"
         label-for="nested-description"
         label-cols-sm="4"
         label-align-sm="right">
-               <b-form-input id="nested-description" placeholder="DESCRIPTION" v-model="description"></b-form-input>
+               <b-form-input id="nested-description"  v-model="description"></b-form-input>
       </b-form-group>
       <b-button variant="primary" @click="updateItem">MAJ</b-button>
+      <b-button variant="primary" @click="returnMeth">Retour</b-button>
     </b-form-group>
   </b-card>
 </div>
@@ -57,6 +58,9 @@ export default {
         title: this.title,
         description: this.description
       })
+      this.$router.push({ name: 'Items' })
+    },
+    returnMeth () {
       this.$router.push({ name: 'Items' })
     }
   }

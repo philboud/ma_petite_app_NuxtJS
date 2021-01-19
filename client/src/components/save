@@ -12,3 +12,23 @@
         </div>
       </div>
       </div>
+
+      __________________________________________________
+
+            <table>
+        <tr>
+          <td>Title</td>
+          <td width="550">Description</td>
+          <td width="100" align="center">Action</td>
+        </tr>
+        <tr v-for="item in items" v-bind:key="item.id">
+          <td>{{ item.title }}</td>
+          <td>{{ item.description }}</td>
+          <td align="center">
+            <router-link
+              v-bind:to="{ name: 'EditItem', params: { id: item._id } }"
+              >Editer</router-link>
+                <a href="#" @click="deleteItem(item._id)">Supprimer</a>
+          </td>
+        </tr>
+      </table>
