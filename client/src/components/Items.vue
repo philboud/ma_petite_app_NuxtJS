@@ -6,11 +6,15 @@
     <div v-if="items.length > 0" class="table-wrap">
     <b-table striped hover :items="items" :fields="fields" bordered head-variant="dark">
       <template #cell(action)="row">
+        <div class="row">
+        <div class="col-md-2 col-lg-12">
         <b-button variant="primary" @click="info(row.item, row.index, $event.target)" class="mr-1">
           Détails
         </b-button>
         <b-button variant="primary" @click="editItem(row)">Edit</b-button>
         <b-button variant="primary" @click="deleteItem(row)">Supp</b-button>
+        </div>
+        </div>
         </template>
     </b-table>
             <div>
@@ -83,8 +87,7 @@ export default {
   text-decoration: underline;
 }
 .table-wrap {
-  width: 60%;
-  margin: 0 auto;
+  width: 100%;
   text-align: center;
 }
 </style>

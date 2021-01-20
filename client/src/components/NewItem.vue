@@ -20,7 +20,7 @@
         label-for="nested-description"
         label-cols-sm="4"
         label-align-sm="right">
-               <b-form-input id="nested-description" v-model="description"></b-form-input>
+               <b-form-textarea id="nested-description" v-model="description"></b-form-textarea>
       </b-form-group>
       <b-button variant="primary" @click="addItem">Ajouter</b-button>
       <b-button variant="primary" @click="returnMeth">Retour</b-button>
@@ -56,8 +56,6 @@ export default {
 </script>
 <style type="text/css">
 .cadre{
-  width: 800px;
-  padding-left: 90px;
   padding-top: 30px;
- }
+}
 </style>
