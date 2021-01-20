@@ -3,7 +3,8 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const morgan = require('morgan')
 var mongoose = require('mongoose')
-var Item = require("../models/items.model");
+var Item = require("../models/items.model")
+var Profile = require("../models/profile.model")
 
 mongoose.connect('mongodb://localhost:27017/itemsDB');
 var db = mongoose.connection;
@@ -17,7 +18,84 @@ app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors())
 
-// Fetch all posts
+// Fetch all profiles
+app.get('/profiles', (req, res) => {
+  var laReq = 'lastname firstname address'
+  Profile.find({}, laReq, function (error, profiles) {
+    if (error) { console.error(error); }
+    res.send({
+      profiles: profiles
+    })
+  })
+})
+
+// Add new profile
+app.post('/profiles', (req, res) => {
+  var db = req.db;
+  var lastname = req.body.lastname;
+  var firstname = req.body.firstname;
+  var address = req.body.address
+  var new_profile = new Profile({
+    lastname: lastname,
+    firstname: firstname,
+    address: address
+  })
+
+  new_profile.save(function (error) {
+    if (error) {
+      console.log(error)
+    }
+    res.send({
+      success: true,
+      message: 'Profile saved successfully!'
+    })
+  })
+})
+
+// Fetch single profile
+app.get('/profiles/:id', (req, res) => {
+  var db = req.db;
+  var laReq = 'lastname firstname address'
+  Profile.findById(req.params.id, laReq, function (error, profile) {
+    if (error) { console.error(error); }
+    res.send(profile)
+  })
+})
+
+// Update a profile
+app.put('/profiles/:id', (req, res) => {
+  var db = req.db;
+  Profile.findById(req.params.id, 'title description', function (error, profile) {
+    if (error) { console.error(error); }
+    profile.lastname = req.body.lastname
+    profile.firstname = req.body.firstname
+    profile.address = req.body.address
+    profile.save(function (error) {
+      if (error) {
+        console.log(error)
+      }
+      res.send({
+        success: true
+      })
+    })
+  })
+})
+
+// Delete an item
+app.delete('/profiles/:id', (req, res) => {
+  var db = req.db;
+  Profile.remove({
+    _id: req.params.id
+  }, function(err, profile){
+    if (err)
+      res.send(err)
+    res.send({
+      success: true
+    })
+  })
+})
+
+// Fetch all items
 app.get('/items', (req, res) => {
   Item.find({}, 'title description', function (error, items) {
     if (error) { console.error(error); }
@@ -47,7 +125,7 @@ app.post('/items', (req, res) => {
     })
   })
 })
-// Fetch single post
+// Fetch single item
 app.get('/item/:id', (req, res) => {
   var db = req.db;
   Item.findById(req.params.id, 'title description', function (error, item) {
@@ -56,7 +134,7 @@ app.get('/item/:id', (req, res) => {
   })
 })
 
-// Update a item
+// Update an item
 app.put('/items/:id', (req, res) => {
   var db = req.db;
   Item.findById(req.params.id, 'title description', function (error, item) {

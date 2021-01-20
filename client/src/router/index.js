@@ -4,6 +4,9 @@ import Items from '@/components/Items'
 import NewItem from '@/components/NewItem'
 import EditItem from '@/components/EditItem'
 import Accueil from '@/components/Accueil'
+import NewProfiles from '@/components/NewProfiles'
+import Profiles from '@/components/Profiles'
+import EditProfile from '@/components/Editprofiles'
 
 Vue.use(Router)
 
@@ -29,6 +32,21 @@ export default new Router({
       path: '/items/:id',
       name: 'EditItem',
       component: EditItem
+    },
+    {
+      path: '/profiles',
+      name: 'Profiles',
+      component: Profiles
+    },
+    {
+      path: '/profiles/new',
+      name: 'NewProfile',
+      component: NewProfiles
+    },
+    {
+      path: '/profiles/:id',
+      name: 'EditProfile',
+      component: EditProfile
     }
   ]
 })
