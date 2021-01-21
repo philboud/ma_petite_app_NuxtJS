@@ -46,7 +46,7 @@ export default {
         title: this.title,
         description: this.description
       })
-      this.$router.push({ name: 'Items' })
+      this.$router.push({ name: 'Dataperso' })
     },
     returnMeth () {
       this.$router.push({ name: 'Items' })

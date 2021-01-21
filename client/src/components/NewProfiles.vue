@@ -13,7 +13,7 @@
         label-for="nested-lastname"
         label-cols-sm="4"
         label-align-sm="right">
-               <b-form-input id="nested-lastname" name="name"  v-model="lastname"></b-form-input>
+               <b-form-input id="nested-lastname" v-model="lastname"></b-form-input>
       </b-form-group>
       <b-form-group
         label="Prénom:"
@@ -21,6 +21,27 @@
         label-cols-sm="4"
         label-align-sm="right">
                <b-form-input id="nested-firsttname" v-model="firstname"></b-form-input>
+      </b-form-group>
+            <b-form-group
+        label="e-Mail:"
+        label-for="nested-mail"
+        label-cols-sm="4"
+        label-align-sm="right">
+               <b-form-input id="nested-mail" v-model="dataperso.mail"></b-form-input>
+      </b-form-group>
+            <b-form-group
+        label="Téléphone:"
+        label-for="nested-phone"
+        label-cols-sm="4"
+        label-align-sm="right">
+               <b-form-input id="nested-phone" v-model="dataperso.phone"></b-form-input>
+      </b-form-group>
+            <b-form-group
+        label="Genre:"
+        label-for="nested-genre"
+        label-cols-sm="4"
+        label-align-sm="right">
+               <b-form-input id="nested-genre" v-model="dataperso.genre"></b-form-input>
       </b-form-group>
        <b-form-group
         label="Adresse:"
@@ -43,7 +64,12 @@ export default {
     return {
       lastname: '',
       firstname: '',
-      address: ''
+      address: '',
+      dataperso: {
+        mail: '',
+        phone: '',
+        genre: ''
+      }
     }
   },
   methods: {
@@ -51,7 +77,8 @@ export default {
       await ProfileService.addProfile({
         lastname: this.lastname,
         firstname: this.firstname,
-        address: this.address
+        address: this.address,
+        dataperso: this.dataperso
       })
       this.$router.push({ name: 'Profiles' })
     },

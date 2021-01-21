@@ -59,19 +59,20 @@ export default {
   methods: {
     deleteIt (row) {
       Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
+        title: 'Etes vous certain?',
+        text: 'Cette opération est irreversible!',
         icon: 'warning',
         showCancelButton: true,
+        cancelButtonText: 'Annulé',
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonText: 'Oui, supprimer!'
       }).then((result) => {
         if (result.isConfirmed) {
           this.deleteItem(row)
           Swal.fire(
-            'Deleted!',
-            'Your file has been deleted.',
+            'Supprimé!',
+            'Enregistrement supprimé.',
             'success'
           )
         }

@@ -20,7 +20,7 @@ app.use(cors())
 
 // Fetch all profiles
 app.get('/profiles', (req, res) => {
-  var laReq = 'lastname firstname address'
+  var laReq = 'lastname firstname address dataperso'
   Profile.find({}, laReq, function (error, profiles) {
     if (error) { console.error(error); }
     res.send({
@@ -35,10 +35,12 @@ app.post('/profiles', (req, res) => {
   var lastname = req.body.lastname;
   var firstname = req.body.firstname;
   var address = req.body.address
+  var dataperso = req.body.dataperso
   var new_profile = new Profile({
     lastname: lastname,
     firstname: firstname,
-    address: address
+    address: address,
+    dataperso: dataperso
   })
 
   new_profile.save(function (error) {
@@ -55,7 +57,7 @@ app.post('/profiles', (req, res) => {
 // Fetch single profile
 app.get('/profiles/:id', (req, res) => {
   var db = req.db;
-  var laReq = 'lastname firstname address'
+  var laReq = 'lastname firstname address dataperso'
   Profile.findById(req.params.id, laReq, function (error, profile) {
     if (error) { console.error(error); }
     res.send(profile)
@@ -65,11 +67,13 @@ app.get('/profiles/:id', (req, res) => {
 // Update a profile
 app.put('/profiles/:id', (req, res) => {
   var db = req.db;
-  Profile.findById(req.params.id, 'title description', function (error, profile) {
+  Profile.findById(req.params.id, 'profile', function (error, profile) {
     if (error) { console.error(error); }
     profile.lastname = req.body.lastname
     profile.firstname = req.body.firstname
     profile.address = req.body.address
+    profile.dataperso = req.body.dataperso
+    console.log(req.body.dataperso)
     profile.save(function (error) {
       if (error) {
         console.log(error)

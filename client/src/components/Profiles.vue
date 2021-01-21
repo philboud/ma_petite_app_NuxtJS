@@ -52,19 +52,20 @@ export default {
   methods: {
     deleteIt (row) {
       Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
+        title: 'Etes vous cerrtain?',
+        text: 'Cette suppression sera irreversible!',
         icon: 'warning',
         showCancelButton: true,
+        cancelButtonText: 'Annulé',
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonText: 'Oui, supprimer!'
       }).then((result) => {
         if (result.isConfirmed) {
           this.deleteProfile(row)
           Swal.fire(
-            'Deleted!',
-            'Your file has been deleted.',
+            'Supprimer!',
+            'Enregistrement supprimé',
             'success'
           )
         }
@@ -73,7 +74,6 @@ export default {
     async getProfiles () {
       const response = await ProfileService.fetchProfiles()
       this.profiles = response.data.profiles
-      console.log(response.data.profiles)
     },
     async deleteProfile (row) {
       var id = row.item._id
