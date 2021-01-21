@@ -12,7 +12,7 @@
           Détails
         </b-button>
         <b-button variant="primary" @click="editItem(row)">Edit</b-button>
-        <b-button variant="primary" @click="deleteItem(row)">Supp</b-button>
+        <b-button variant="primary" @click="deleteIt(row)">Supp</b-button>
         </div>
         </div>
         </template>
@@ -37,6 +37,9 @@
 
 <script>
 import ItemsService from '@/services/ItemsService'
+import Swal from 'sweetalert2'
+window.Swal = Swal
+
 export default {
   name: 'items',
   data () {
@@ -54,6 +57,26 @@ export default {
     this.getItems()
   },
   methods: {
+    deleteIt (row) {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.deleteItem(row)
+          Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+          )
+        }
+      })
+    },
     async getItems () {
       const response = await ItemsService.fetchItems()
       this.items = response.data.items

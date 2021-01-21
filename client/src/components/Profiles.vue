@@ -5,11 +5,11 @@
     </div>
     <div v-if="profiles.length > 0" class="table-wrap">
     <b-table striped hover :items="profiles" :fields="fields" bordered head-variant="dark">
-      <template #cell(action)="row">
+      <template #cell(actions)="row">
         <div class="row">
         <div class="col-md-2 col-lg-12">
         <b-button variant="primary" @click="editProfile(row)">Edit</b-button>
-        <b-button variant="primary" @click="deleteProfile(row)">Supp</b-button>
+        <b-button variant="primary" @click="deleteIt(row)">Supp</b-button>
         </div>
         </div>
         </template>
@@ -29,11 +29,14 @@
 
 <script>
 import ProfileService from '@/services/ProfileService'
+import Swal from 'sweetalert2'
+window.Swal = Swal
+
 export default {
   name: 'profiles',
   data () {
     return {
-      fields: [{key: 'lastname', label: 'Nom'}, {key: 'firstname', label: 'Prénom'}, {key: 'address', label: 'Adresse'}, {key: 'action'}],
+      fields: [{key: 'lastname', label: 'Nom'}, {key: 'firstname', label: 'Prénom'}, {key: 'address', label: 'Adresse'}, {key: 'actions'}],
       profiles: [],
       infoModal: {
         id: 'info-modal',
@@ -47,6 +50,26 @@ export default {
     this.getProfiles()
   },
   methods: {
+    deleteIt (row) {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.deleteProfile(row)
+          Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+          )
+        }
+      })
+    },
     async getProfiles () {
       const response = await ProfileService.fetchProfiles()
       this.profiles = response.data.profiles

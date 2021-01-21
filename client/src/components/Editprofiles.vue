@@ -77,4 +77,5 @@ export default {
 }
 </script>
 <style type="text/css">
+  padding-top: 30px;
 </style>
