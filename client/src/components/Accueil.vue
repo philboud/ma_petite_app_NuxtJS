@@ -1,24 +1,40 @@
 <template>
     <div>
-<h1>Accueil de ma petite app</h1>
-<div class="liste">
-<ul>
-  <li>Application NodeJS, Express, VueJS, MongoDB</li>
-  <li>C.R.U.D</li>
-  <li>Application avec BootStrap</li>
-</ul>
-</div>
+<h1>ShowRoom</h1>
+<b-container>
+  <b-row align-h="start">
+    <b-col sm="2">
+  <ul>
+    <div @click="goAway()">
+    <li v-for="image in images" :key="image"><br>
+  <b-img :src="static_url + image +'.jpeg'"></b-img>
+    </li>
+    </div>
+  </ul>
+  </b-col>
+  </b-row>
+    </b-container>
     </div>
 </template>
 
 <script>
 export default {
-  name: 'Accueil'
+  name: 'Accueil',
+  data () {
+    return {
+      static_url: '/static/images/',
+      images: ['stick2', 'stick3', 'stick5', 'stick6', 'stick7']
+    }
+  },
+  methods: {
+    goAway () {
+      console.log(this.images.image)
+    }
+  }
 }
 </script>
 <style>
-  .liste{
-    padding-top: 30px;
-    text-align: left;
+  li{
+    list-style: none;
   }
   </style>
