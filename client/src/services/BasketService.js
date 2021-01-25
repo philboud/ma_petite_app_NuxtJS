@@ -4,6 +4,9 @@ export default {
   fetchBasket () {
     return Api().get('products')
   },
+  fetchBasketTotal () {
+    return Api().get('total')
+  },
   getBasket (params) {
     return Api().get('products/' + params.id)
   },
