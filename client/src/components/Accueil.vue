@@ -1,18 +1,23 @@
 <template>
     <div>
-<h1>ShowRoom</h1>
+<h1 >ShowRoom</h1>
 <b-container>
-  <b-row align-h="start">
-    <b-col sm="2">
+  <b-row align-v="start">
+    <b-col sm = 2>
   <ul>
-    <div @click="goAway()">
-    <li v-for="image in images" :key="image"><br>
-  <b-img :src="static_url + image +'.jpeg'"></b-img>
-    </li>
+    <div v-b-modal.modal-center-xl>
+         <li v-for="image in images" :key="image"><br>
+  <b-img :src="static_url + image +'.jpeg'" @click="onClick(image)"></b-img></li>
     </div>
   </ul>
   </b-col>
-  </b-row>
+    <b-col>
+       <div v-if="visible" @click="onClickVisible()">
+    <b-img :src="static_url +imageG+'.jpeg'"></b-img><br><br>
+    </div>
+    <p @click="addBasket">Ajouter au panier</p>
+    </b-col>
+    </b-row>
     </b-container>
     </div>
 </template>
@@ -22,13 +27,24 @@ export default {
   name: 'Accueil',
   data () {
     return {
+      visible: true,
       static_url: '/static/images/',
-      images: ['stick2', 'stick3', 'stick5', 'stick6', 'stick7']
+      images: ['stick2', 'stick3', 'stick5', 'stick6', 'stick7'],
+      imageG: ''
     }
   },
   methods: {
-    goAway () {
-      console.log(this.images.image)
+    onClick (image) {
+      this.visible = true
+      this.imageG = image.replace('stick', 'image')
+      console.log(this.imageG)
+    },
+    onClickVisible () {
+      this.visible = false
+    },
+    addBasket () {
+      console.log('ajouté au panier')
+      this.visible = false
     }
   }
 }
@@ -37,4 +53,8 @@ export default {
   li{
     list-style: none;
   }
-  </style>
+  .container{
+    align-self: auto;
+    max-width: 2000px;
+  }
+ </style>

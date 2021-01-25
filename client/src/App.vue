@@ -19,7 +19,6 @@
           <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
         </b-nav-form>
           <b-nav-item-dropdown right>
-          <!-- Using 'button-content' slot -->
           <template #button-content>
             <em>User</em>
           </template>
@@ -51,12 +50,12 @@ export default {
 #app {
   border: black solid;
   border-radius: 20px;
-  width: 1200px;
+  width: auto;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #1f2327;
   margin: 50px;
   padding-bottom: 30px;
 }

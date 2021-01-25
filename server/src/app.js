@@ -5,6 +5,7 @@ const morgan = require('morgan')
 var mongoose = require('mongoose')
 var Item = require("../models/items.model")
 var Profile = require("../models/profile.model")
+var Product = require("../models/basket.model")
 
 mongoose.connect('mongodb://localhost:27017/itemsDB');
 var db = mongoose.connection;
@@ -85,7 +86,7 @@ app.put('/profiles/:id', (req, res) => {
   })
 })
 
-// Delete an item
+// Delete a profile
 app.delete('/profiles/:id', (req, res) => {
   var db = req.db;
   Profile.remove({
@@ -162,6 +163,78 @@ app.delete('/items/:id', (req, res) => {
   Item.remove({
     _id: req.params.id
   }, function(err, item){
+    if (err)
+      res.send(err)
+    res.send({
+      success: true
+    })
+  })
+})
+// Fetch all products in basket
+app.get('/products', (req, res) => {
+  Product.find({}, 'image price', function (error, products) {
+    ;
+    if (error) { console.error(error);
+     }console.log(products)
+    res.send({
+      products: products,
+    })
+  }).sort({_id:-1})
+})
+
+// Add new product in basket
+app.post('/products', (req, res) => {
+  
+  var db = req.db;
+  var image = req.body.image;
+  var price = req.body.price;
+  var new_product = new Product({
+    image: image,
+    price: price
+  })
+  new_product.save(function (error) {
+    if (error) {
+      console.log(error)
+    }
+    res.send({
+      success: true,
+      message: 'Product saved successfully!'
+    })
+  })
+})
+// Fetch single product in basket
+app.get('/product/:id', (req, res) => {
+  var db = req.db;
+  Product.findById(req.params.id, 'image price', function (error, product) {
+    if (error) { console.error(error); }
+    res.send(product)
+  })
+})
+
+// Update a product in basket
+app.put('/product/:id', (req, res) => {
+  var db = req.db;
+  Product.findById(req.params.id, 'image price', function (error, product) {
+    if (error) { console.error(error); }
+    product.image = req.body.image
+    product.price = req.body.price
+    product.save(function (error) {
+      if (error) {
+        console.log(error)
+      }
+      res.send({
+        success: true
+      })
+    })
+  })
+})
+
+// Delete a product in basket
+app.delete('/product/:id', (req, res) => {
+  var db = req.db;
+  Product.remove({
+    _id: req.params.id
+  }, function(err, product){
     if (err)
       res.send(err)
     res.send({

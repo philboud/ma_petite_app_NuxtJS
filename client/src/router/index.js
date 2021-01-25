@@ -7,6 +7,7 @@ import Accueil from '@/components/Accueil'
 import NewProfiles from '@/components/NewProfiles'
 import Profiles from '@/components/Profiles'
 import EditProfile from '@/components/Editprofiles'
+import Basket from '@/components/Panier'
 
 Vue.use(Router)
 
@@ -47,6 +48,11 @@ export default new Router({
       path: '/profiles/:id',
       name: 'EditProfile',
       component: EditProfile
+    },
+    {
+      path: '/basket',
+      name: 'Basket',
+      component: Basket
     }
   ]
 })
