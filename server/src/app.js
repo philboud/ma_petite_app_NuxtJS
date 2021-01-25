@@ -172,19 +172,11 @@ app.delete('/items/:id', (req, res) => {
 })
 // Fetch all products in basket
 app.get('/products', (req, res) => {
-  const calcTotal = []
   Product.find({}, 'image price', function (error, products) {
-    ;
     if (error) { console.error(error);
      }
-     for ( let [key, value] of Object.entries(products) ) {
-      calcTotal.push(parseInt(`${value.price}`))
-      
-     }
-     const total = calcTotal.reduce((a,b)=>a+b)
-        res.send({
+       res.send({
       products: products,
-      total: total
     })
   }).sort({_id:-1})
 })
