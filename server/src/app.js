@@ -6,6 +6,7 @@ var mongoose = require('mongoose')
 var Item = require("../models/items.model")
 var Profile = require("../models/profile.model")
 var Product = require("../models/basket.model")
+var Refimage = require("../models/refimage.model")
 
 mongoose.connect('mongodb://localhost:27017/itemsDB');
 var db = mongoose.connection;
@@ -172,7 +173,7 @@ app.delete('/items/:id', (req, res) => {
 })
 // Fetch all products in basket
 app.get('/products', (req, res) => {
-  Product.find({}, 'image price', function (error, products) {
+  Product.find({}, 'sticker price description modele', function (error, products) {
     if (error) { console.error(error);
      }
        res.send({
@@ -180,7 +181,7 @@ app.get('/products', (req, res) => {
     })
   }).sort({_id:-1})
 })
-// Fetch all products in basket
+// Fetch total basket
 app.get('/total', (req, res) => {
   const calcTotal = []
   Product.find({}, 'image price', function (error, products) {
@@ -191,10 +192,17 @@ app.get('/total', (req, res) => {
       calcTotal.push(parseInt(`${value.price}`))
       
      }
-     const total = calcTotal.reduce((a,b)=>a+b)
+     // Calculate the amount of the basket
+     var total = null
+     if (calcTotal.length !== 0) {
+     total = calcTotal.reduce((a,b) => a + b)
+     } else {
+       this.total = ''
+       console.log('total', total)
+     }
         res.send({
        total: total
-    })
+      })
   }).sort({_id:-1})
 })
 
@@ -202,11 +210,15 @@ app.get('/total', (req, res) => {
 app.post('/products', (req, res) => {
   
   var db = req.db;
-  var image = req.body.image;
+  var sticker = req.body.sticker;
   var price = req.body.price;
+  var description = req.body.description;
+  var modele = req.body.modele;
   var new_product = new Product({
-    image: image,
-    price: price
+    sticker: sticker,
+    price: price,
+    description: description,
+    modele: modele
   })
   new_product.save(function (error) {
     if (error) {
@@ -230,10 +242,12 @@ app.get('/product/:id', (req, res) => {
 // Update a product in basket
 app.put('/product/:id', (req, res) => {
   var db = req.db;
-  Product.findById(req.params.id, 'image price', function (error, product) {
+  Product.findById(req.params.id, 'stick description modele price', function (error, product) {
     if (error) { console.error(error); }
-    product.image = req.body.image
+    product.stick = req.body.stick
+    product.modele = req.body.modele
     product.price = req.body.price
+    product.description = req.body.description
     product.save(function (error) {
       if (error) {
         console.log(error)
@@ -251,6 +265,85 @@ app.delete('/products/:id', (req, res) => {
   Product.remove({
     _id: req.params.id
   }, function(err, product){
+    if (err)
+      res.send(err)
+    res.send({
+      success: true
+    })
+  })
+})
+// Fetch all refimage
+app.get('/refimages', (req, res) => {
+  Refimage.find({}, 'image sticker modele description prix', function (error, refimages) {
+    if (error) { console.error(error); }
+    res.send({
+      refimages: refimages
+    })
+  }).sort({_id:-1})
+})
+
+// Add new refimage
+app.post('/refimages', (req, res) => {
+  var db = req.db;
+  var image = req.body.image;
+  var sticker = req.body.sticker;
+  var modele = req.body.modele;
+  var description = req.body.description;
+  var prix = req.body.prix;
+  var new_refimages = new Refimage({
+    image: image,
+    sticker: sticker,
+    modele: modele,
+    description: description,
+    prix: prix
+  })
+
+  new_refimages.save(function (error) {
+    if (error) {
+      console.log(error)
+    }
+    res.send({
+      success: true,
+      message: 'Item saved successfully!'
+    })
+  })
+})
+// Fetch single refimage
+app.get('/refimages/:id', (req, res) => {
+  var db = req.db;
+  Refimage.findById(req.params.id, 'image sticker description modele prix', function (error, refimage) {
+    if (error) { console.error(error); }
+    res.send(refimage)
+  })
+})
+
+// Update a refimage
+app.put('/refimages/:id', (req, res) => {
+  var db = req.db;
+  Refimage.findById(req.params.id, 'image sticker', function (error, refimage) {
+    if (error) { console.error(error); }
+    refimage.image = req.body.image
+    refimage.sticker = req.body.sticker
+    refimage.modele = req.body.modele
+    refimage.description = req.body.description
+    refimage.prix = req.body.prix
+    refimage.save(function (error) {
+      if (error) {
+        console.log(error)
+      }
+      res.send({
+        success: true
+      })
+    })
+  })
+})
+
+// Delete an refimage
+app.delete('/refimages/:id', (req, res) => {
+  var db = req.db;
+  Refimage.remove({
+    _id: req.params.id
+  }, function(err, item){
     if (err)
       res.send(err)
     res.send({

@@ -3,48 +3,71 @@
 <h1 >ShowRoom</h1>
 <b-container>
   <b-row align-v="start">
-    <b-col sm = 2>
-  <ul>
-    <div v-b-modal.modal-center-xl>
-         <li v-for="image in images" :key="image"><br>
-  <b-img :src="static_url + image +'.jpeg'" @click="onClick(image)"></b-img></li>
-    </div>
-  </ul>
+    <b-col sm = 0>
+    <div>
+      <li v-for="item in images" :key="item._id"><br>
+      <b-container>
+        <b-row class="encadre">
+          <b-col>
+        <b-img :src=" static_url + item.sticker + '.jpeg'" @click="onClickImage"></b-img>
+          </b-col>
+          <b-col>
+            <h2>{{item.modele}}</h2>
+            <p>{{item.description}}</p>
+            <h2>{{item.prix}} €</h2>
+             <b-button @click="addBasket(item)">Ajouter au panier</b-button>
+            </b-col>
+        </b-row>
+        </b-container>
+        </li>
+  </div>
   </b-col>
     <b-col>
-       <div v-if="visible" @click="onClickVisible()">
-    <b-img :src="static_url +imageG+'.jpeg'"></b-img><br><br>
-    </div>
-    <p @click="addBasket">Ajouter au panier</p>
-    </b-col>
-    </b-row>
+        <p>Présentation du showroom de nos véhicules moyenne, haute et très haute gamme</p>
+      </b-col>
+     </b-row>
     </b-container>
     </div>
 </template>
 
 <script>
+
+import RefimageService from '@/services/RefimageService'
+import BasketService from '@/services/BasketService'
+
 export default {
   name: 'Accueil',
   data () {
     return {
       visible: true,
       static_url: '/static/images/',
-      images: ['stick2', 'stick3', 'stick5', 'stick6', 'stick7'],
-      imageG: ''
+      images: []
     }
   },
+  mounted () {
+    this.getImage()
+  },
+
   methods: {
-    onClick (image) {
+    onClickImage (image) {
       this.visible = true
-      this.imageG = image.replace('stick', 'image')
-      console.log(this.imageG)
     },
     onClickVisible () {
       this.visible = false
     },
-    addBasket () {
-      console.log('ajouté au panier')
-      this.visible = false
+    async getImage () {
+      const response = await RefimageService.fetchRefimages()
+      this.images = response.data.refimages
+      console.log(this.images)
+    },
+    async addBasket (item) {
+      console.log(item.sticker)
+      await BasketService.addBasket({
+        sticker: item.sticker,
+        modele: item.modele,
+        description: item.description,
+        price: item.prix
+      })
     }
   }
 }
@@ -55,6 +78,10 @@ export default {
   }
   .container{
     align-self: auto;
-    max-width: 2000px;
+    max-width: 1000px;
+  }
+  .encadre{
+    padding: 10px;
+    border: gray solid;
   }
  </style>

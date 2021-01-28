@@ -8,6 +8,7 @@ import NewProfiles from '@/components/NewProfiles'
 import Profiles from '@/components/Profiles'
 import EditProfile from '@/components/Editprofiles'
 import Basket from '@/components/Panier'
+import AddCar from '@/components/AddCar'
 
 Vue.use(Router)
 
@@ -53,6 +54,11 @@ export default new Router({
       path: '/basket',
       name: 'Basket',
       component: Basket
+    },
+    {
+      path: '/addcar',
+      name: 'AddCar',
+      component: AddCar
     }
   ]
 })

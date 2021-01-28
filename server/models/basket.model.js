@@ -2,7 +2,9 @@ var mongoose = require("mongoose")
 var Schema = mongoose.Schema
 
 var ProductSchema = new Schema({
-  image: String,
+  sticker: String,
+  description: String,
+  modele: String,
   price: String
 });
 
