@@ -1,4 +1,5 @@
 <template>
+<div>
   <div class="back">
       <div class="navfont">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -22,19 +23,45 @@
      </nav>
   </div>
 <div class="title"><p>Lux cars</p></div>
-    <Nuxt />
+<div class="container">
+      <Nuxt />
   </div>
+   </div>
+  <div class="foot">
+    <Footer />
+       </div>
+      </div>
 </template>
+
+<script>
+import Footer from '@/components/Footer.vue'
+export default {
+  components: { 
+    Footer
+  }
+}
+</script>
 
 <style>
 .back{
-  height: auto;
+  margin:0;
+  padding:0;
+  position:relative;
+  height: 1200px;
   background-image: url('~assets/images/fond.jpeg');
   background-size: cover;
   background-repeat: no-repeat;
-  
+  background-attachment: fixed;
+  background-clip: padding-box;
 }
 .title{
   color: aliceblue;
+}
+.foot{
+  border: 0.2em solid;
+  position: relative;
+  bottom:0;
+  width:100%;
+  height:240px;
 }
 </style>

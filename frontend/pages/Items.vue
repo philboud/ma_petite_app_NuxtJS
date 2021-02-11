@@ -1,5 +1,5 @@
 <template>
-<div class="container">
+<div>
   <div class="items">
     <div class="title">
     <h1>Items</h1>
@@ -88,11 +88,11 @@ export default {
       await ItemsService.deleteItem(id)
     },
     addItem () {
-      this.$router.push('/items/new')
+      this.$router.push('/newItem')
     },
     editItem (row) {
       var id = row.item._id
-      this.$router.push('items/' + id)
+      this.$router.push({name: 'EditItem', params:{id: id}})
     },
     resetInfoModal () {
       this.infoModal.title = ''

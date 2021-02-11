@@ -1,6 +1,7 @@
 <template>
   <div class="profiles">
     <div class="title">
+      <br>
     <h1>Profiles</h1>
     </div>
     <div v-if="profiles.length > 0" class="table-wrap">
@@ -79,18 +80,18 @@ export default {
       await ProfileService.deleteProfile(id)
     },
     addProfile () {
-      this.$router.push('/profiles/new')
+      this.$router.push('/newProfiles')
     },
     editProfile (row) {
       var id = row.item._id
-      this.$router.push('profiles/' + id)
+      this.$router.push({name: 'Editprofiles', params:{id: id}})
     }
   }
 }
 </script>
 <style type="text/css">
 .table-wrap {
-  margin-top: 50px;
+  
   margin-left: 25%;
   width: 50%;
   color: antiquewhite;

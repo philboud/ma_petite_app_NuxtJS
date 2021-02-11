@@ -99,6 +99,7 @@ export default {
       this.firstname = response.data.firstname
       this.address = response.data.address
       this.dataperso = response.data.dataperso[0]
+      console.log(response.data)
     },
     async updateProfile () {
       await ProfileService.updateProfile({

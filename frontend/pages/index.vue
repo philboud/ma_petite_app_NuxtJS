@@ -1,7 +1,8 @@
 <template>
-<div class="container">
+<div>
   <br>
-<h1>ShowRoom</h1>
+  <h1 class="title">ShowRoom</h1>
+  <div class="cadre">
 <div class="card mb-3" style="max-width: 1000px;" v-for="item in images" :key="item._id">
   <div class="row no-gutters">
     <div class="col-md-4">
@@ -17,6 +18,7 @@
       </div>
     </div>
   </div>
+</div>
 </div>
 <br>
 </div>
@@ -60,7 +62,13 @@ export default {
 }
 </script>
 <style>
-h1{
+.cadre{
+  display: block;
+  height: 1000px;
+  overflow: auto;
+}
+title{
   color: aliceblue;
 }
+
  </style>

@@ -1,28 +1,31 @@
 <template>
-  <div class="container">
-    <div class="subTitle">
-    <h1>Votre panier</h1><br>
-    </div>
-    <h2 v-if="products.length === 0">(Vide)</h2>
-    <div class="card mb-3" style="max-width: 1000px;" v-for="item in products" :key="item._id">
-  <div class="row no-gutters">
-    <div class="col-md-4">
-      <img :src="require('~/' + static_url + item.sticker +'.jpeg')">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title"><strong>{{item.modele}}</strong></h5>
-        <p class="card-text"></p>
-            <p>{{item.description}}</p>
-            <h2>{{item.price}} €</h2>
-            <b-button @click="deleteProduct(item._id, index)">Supp</b-button>
-      </div>
-    </div>
-  </div>
-</div>
-  <div class="total">
+  <div>
+    <br>
+     <div class="title">
+      <h1>Votre panier</h1><br>
+        <div class="total">
       <h2><strong>Total: </strong>{{total}}€</h2>
+  </div>
     </div>
+    <div class="cadre">
+      <h2 v-if="products.length === 0">(Vide)</h2>
+        <div class="card mb-3" style="max-width: 1000px;" v-for="item in products" :key="item._id">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img :src="require('~/' + static_url + item.sticker +'.jpeg')">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title"><strong>{{item.modele}}</strong></h5>
+                <p class="card-text"></p>
+                <p>{{item.description}}</p>
+                <h2>{{item.price}} €</h2>
+                <b-button @click="deleteProduct(item._id, index)">Supp</b-button>
+              </div>
+            </div>
+          </div>
+      </div>
+  </div>
   </div>
 </template>
 <script>
@@ -63,26 +66,23 @@ export default {
   }
 }
 </script>
-<style>
-
-.col{
-  padding-left: 5%;
+<style scoped>
+.cadre{
+  margin-top: 10px;
+  display: block;
+  height: 1000px;
+  overflow: auto;
 }
-.subTitle{
-  margin-top: 30px;
-}
-.rowData{
-  border-top: rgb(205, 177, 224) solid;
-  border-bottom: rgb(205, 177, 224)solid;
-}
-  li{
-    text-align: left;
-  }
-  .total{
-    background-color: rgb(49, 82, 49);
-    margin-left: 500px;
+ .total{
+    background-color: rgb(181, 231, 181);
+    margin-top: 5px;
+    margin-left: 700px;
     width: 300px;
     border:lightseagreen solid;
     text-align: center;
+    color:blue
   }
+  title{
+  color: aliceblue;
+}
    </style>
