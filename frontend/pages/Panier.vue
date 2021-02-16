@@ -8,20 +8,28 @@
   </div>
     </div>
     <div class="cadre">
+      <div class="vide">
       <h2 v-if="products.length === 0">(Vide)</h2>
-        <div class="card mb-3" style="max-width: 1000px;" v-for="item in products" :key="item._id">
+      </div>
+        <div class="card mb-3" style="max-width: 1000px;" v-for="(item, index) in products" :key="item._id">
           <div class="row no-gutters">
             <div class="col-md-4">
               <img :src="require('~/' + static_url + item.sticker +'.jpeg')">
             </div>
             <div class="col-md-8">
               <div class="card-body">
-                <h5 class="card-title"><strong>{{item.modele}}</strong></h5>
+                <h4 class="card-title"><strong>{{item.modele}}</strong></h4>
                 <p class="card-text"></p>
-                <p>{{item.description}}</p>
-                <h2>{{item.price}} €</h2>
-                <b-button @click="deleteProduct(item._id, index)">Supp</b-button>
-              </div>
+                <h5>{{item.description}}</h5>
+                <div class="alignQty">
+                <h2>{{item.price}}€ </h2>
+                  <input type="number" @click="changePrice(item, index)" v-model="item.qty"/>
+                  </div>
+                  <div>
+                    <br><br>
+                   <b-button @click="deleteProduct(item._id, index)">Supp</b-button>
+                   </div>
+               </div>
             </div>
           </div>
       </div>
@@ -48,6 +56,7 @@ export default {
     async getProducts () {
       const response = await BasketService.fetchBasket()
       this.products = response.data.products
+      console.log(this.products)
     },
     async getProductsTotal () {
       const response = await BasketService.fetchBasketTotal()
@@ -55,18 +64,33 @@ export default {
     },
     async deleteProduct (id, idx) {
       this.products.splice(idx, 1)
-      console.log(idx)
       await BasketService.deleteBasket(id)
       this.getProductsTotal()
     },
     editProduct (row) {
       var id = row.item._id
       this.$router.push('accueil/' + id)
+    },
+    async changePrice (item,idx) {
+     await BasketService.updateBasket({
+        modele: item.modele,
+        description: item.description,
+        price: item.price,
+        id:this.products[idx]._id,
+        qty: item.qty
+      })
+      this.getProductsTotal()
     }
   }
 }
 </script>
 <style scoped>
+.alignQty{
+  float: right;
+}
+.vide{
+  color:white;
+}
 .cadre{
   margin-top: 10px;
   display: block;

@@ -173,7 +173,7 @@ app.delete('/items/:id', (req, res) => {
 })
 // Fetch all products in basket
 app.get('/products', (req, res) => {
-  Product.find({}, 'sticker price description modele', function (error, products) {
+  Product.find({}, 'sticker price description modele qty', function (error, products) {
     if (error) { console.error(error);
      }
        res.send({
@@ -181,44 +181,43 @@ app.get('/products', (req, res) => {
     })
   }).sort({_id:-1})
 })
-// Fetch total basket
+// Fetch soustotal basket
 app.get('/total', (req, res) => {
-  const calcTotal = []
-  Product.find({}, 'image price', function (error, products) {
+  const calcTotalInt = []
+  Product.find({}, 'image price qty', function (error, products) {
     ;
     if (error) { console.error(error);
      }
      for ( let [key, value] of Object.entries(products) ) {
-      calcTotal.push(parseInt(`${value.price}`))
-      
-     }
-     // Calculate the amount of the basket
-     var total = null
-     if (calcTotal.length !== 0) {
-     total = calcTotal.reduce((a,b) => a + b)
-     } else {
-       this.total = ''
-       console.log('total', total)
-     }
-        res.send({
-       total: total
+      calcTotalInt.push(`${value.price*value.qty}`)
+    }
+    var total = null
+    if (calcTotalInt.length !== 0) {
+    total = calcTotalInt.reduce((a,b) => parseInt(a) + parseInt(b))
+    } else {this.total = ''
+  }
+         res.send({
+      total: total
       })
   }).sort({_id:-1})
 })
-
 // Add new product in basket
 app.post('/products', (req, res) => {
   
   var db = req.db;
+  var id_origin = req.body.id_origin;
   var sticker = req.body.sticker;
   var price = req.body.price;
   var description = req.body.description;
   var modele = req.body.modele;
+  var qty = req.body.qty;
   var new_product = new Product({
+    id_origin: id_origin,
     sticker: sticker,
     price: price,
     description: description,
-    modele: modele
+    modele: modele,
+    qty: qty
   })
   new_product.save(function (error) {
     if (error) {
@@ -242,12 +241,13 @@ app.get('/product/:id', (req, res) => {
 // Update a product in basket
 app.put('/product/:id', (req, res) => {
   var db = req.db;
-  Product.findById(req.params.id, 'stick description modele price', function (error, product) {
+  Product.findById(req.params.id, 'stick description modele price qty', function (error, product) {
     if (error) { console.error(error); }
     product.stick = req.body.stick
     product.modele = req.body.modele
     product.price = req.body.price
     product.description = req.body.description
+    product.qty = req.body.qty
     product.save(function (error) {
       if (error) {
         console.log(error)
@@ -278,7 +278,7 @@ app.get('/refimages', (req, res) => {
     if (error) { console.error(error); }
     res.send({
       refimages: refimages
-    })
+      })
   }).sort({_id:-1})
 })
 

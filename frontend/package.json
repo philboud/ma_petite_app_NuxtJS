@@ -11,10 +11,12 @@
   "dependencies": {
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
+    "bootstrap-input-spinner": "^1.17.2",
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.8.3",
     "nuxt": "^2.14.12",
-    "sweetalert2": "^10.14.0"
+    "sweetalert2": "^10.15.0",
+    "vue-number-input-spinner": "^2.2.0"
   },
   "devDependencies": {}
 }

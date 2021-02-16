@@ -14,7 +14,7 @@ export default {
     return Api().post('products/', params)
   },
   updateBasket (params) {
-    return Api().put('products/' + params.id, params)
+    return Api().put('product/' + params.id, params)
   },
 
   deleteBasket (id) {

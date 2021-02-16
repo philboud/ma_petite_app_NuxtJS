@@ -61,7 +61,6 @@
 <script>
 
 import RefimageService from '@/services/RefimageService'
-import Articlemgnt from '@/components/Articlemgnt'
 
 export default {
   name: 'AddCar',
@@ -73,22 +72,13 @@ export default {
         sticker: '',
         modele: '',
         description: '',
-        prix: ''
+        prix: '',
+        qty:''
       }
     }
   },
-  components: {
-    Articlemgnt
-  },
-  mounted () {
-    this.getImage()
-  },
-  methods: {
-    async getImage () {
-      const response = await RefimageService.fetchRefimages()
-      this.refimageTab = response.data.refimages
-    },
-        async addArticle () {
+   methods: {
+     async addArticle () {
           if (this.refimages.sticker === '')
             {
             this.refimages.sticker = 'noImage'
@@ -102,7 +92,8 @@ export default {
         sticker: this.refimages.sticker,
         modele: this.refimages.modele,
         description: this.refimages.description,
-        prix: this.refimages.prix
+        prix: this.refimages.prix,
+        qty: this.refimages.qty
       })
       this.$router.push({ name: 'index' })
     }
