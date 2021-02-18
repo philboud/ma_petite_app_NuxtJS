@@ -173,7 +173,7 @@ app.delete('/items/:id', (req, res) => {
 })
 // Fetch all products in basket
 app.get('/products', (req, res) => {
-  Product.find({}, 'sticker price description modele qty', function (error, products) {
+  Product.find({}, 'sticker price description modele qty added', function (error, products) {
     if (error) { console.error(error);
      }
        res.send({
@@ -184,7 +184,7 @@ app.get('/products', (req, res) => {
 // Fetch soustotal basket
 app.get('/total', (req, res) => {
   const calcTotalInt = []
-  Product.find({}, 'image price qty', function (error, products) {
+  Product.find({}, 'image price qty added', function (error, products) {
     ;
     if (error) { console.error(error);
      }
@@ -211,13 +211,16 @@ app.post('/products', (req, res) => {
   var description = req.body.description;
   var modele = req.body.modele;
   var qty = req.body.qty;
+  var added = req.body.added;
   var new_product = new Product({
     id_origin: id_origin,
     sticker: sticker,
     price: price,
     description: description,
     modele: modele,
-    qty: qty
+    qty: qty,
+    added: added
+
   })
   new_product.save(function (error) {
     if (error) {
@@ -274,7 +277,7 @@ app.delete('/products/:id', (req, res) => {
 })
 // Fetch all refimage
 app.get('/refimages', (req, res) => {
-  Refimage.find({}, 'image sticker modele description prix', function (error, refimages) {
+  Refimage.find({}, 'image sticker modele description prix checked', function (error, refimages) {
     if (error) { console.error(error); }
     res.send({
       refimages: refimages
@@ -290,12 +293,14 @@ app.post('/refimages', (req, res) => {
   var modele = req.body.modele;
   var description = req.body.description;
   var prix = req.body.prix;
+  var checked = req.body.checked;
   var new_refimages = new Refimage({
     image: image,
     sticker: sticker,
     modele: modele,
     description: description,
-    prix: prix
+    prix: prix,
+    checked: checked
   })
 
   new_refimages.save(function (error) {
@@ -311,7 +316,7 @@ app.post('/refimages', (req, res) => {
 // Fetch single refimage
 app.get('/refimages/:id', (req, res) => {
   var db = req.db;
-  Refimage.findById(req.params.id, 'image sticker description modele prix', function (error, refimage) {
+  Refimage.findById(req.params.id, 'image sticker description modele prix checked', function (error, refimage) {
     if (error) { console.error(error); }
     res.send(refimage)
   })
@@ -327,6 +332,7 @@ app.put('/refimages/:id', (req, res) => {
     refimage.modele = req.body.modele
     refimage.description = req.body.description
     refimage.prix = req.body.prix
+    refimage.checked = req.body.checked
     refimage.save(function (error) {
       if (error) {
         console.log(error)

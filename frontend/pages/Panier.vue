@@ -23,11 +23,11 @@
                 <h5>{{item.description}}</h5>
                 <div class="alignQty">
                 <h2>{{item.price}}€ </h2>
-                  <input type="number" @click="changePrice(item, index)" v-model="item.qty"/>
+                  <input type="number" :min=1 @click="changePrice(item, index)" v-model="item.qty"/>
                   </div>
                   <div>
                     <br><br>
-                   <b-button @click="deleteProduct(item._id, index)">Supp</b-button>
+                   <b-button @click="deleteIt(item._id, index)">Supp</b-button>
                    </div>
                </div>
             </div>
@@ -53,10 +53,30 @@ export default {
     this.getProductsTotal()
   },
   methods: {
+        deleteIt (item, idx) {
+      Swal.fire({
+        title: 'Etes vous certain?',
+        text: 'Cette opération est irreversible!',
+        icon: 'warning',
+        showCancelButton: true,
+        cancelButtonText: 'Annulé',
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Oui, supprimer!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.deleteProduct(item, idx)
+          Swal.fire(
+            'Supprimé!',
+            'Enregistrement supprimé.',
+            'success'
+          )
+        }
+      })
+    },
     async getProducts () {
       const response = await BasketService.fetchBasket()
       this.products = response.data.products
-      console.log(this.products)
     },
     async getProductsTotal () {
       const response = await BasketService.fetchBasketTotal()
@@ -78,7 +98,7 @@ export default {
         price: item.price,
         id:this.products[idx]._id,
         qty: item.qty
-      })
+        })
       this.getProductsTotal()
     }
   }

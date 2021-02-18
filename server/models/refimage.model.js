@@ -6,7 +6,8 @@ var RefImageSchema = new Schema({
   sticker: String,
   modele: String,
   prix: Number,
-  description: String
+  description: String,
+  checked: Boolean
 });
 
 var Refimage = mongoose.model("Refimage", RefImageSchema)

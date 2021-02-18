@@ -2,6 +2,7 @@
 <div>
   <br>
   <h1 class="title">ShowRoom</h1>
+  <h5 class="title">Nombre d'article(s) dans le panier: {{article}}</h5>
   <div class="cadre">
 <div class="card mb-3" style="max-width: 1000px;" v-for="(item, index) in images" :key="item._id">
   <div class="row no-gutters">
@@ -17,10 +18,12 @@
             <h2>{{item.prix}} €</h2>
             </div>
             <br>
-            <div class="butt"><b-button @click="addBasket(item, index)">Ajouter au panier</b-button></div>
-               <div  class="inputNum">
+           
+            <div  class="butt"><b-button @click="addBasket(item, index)"> Ajouter au panier</b-button></div>
+              <div  class="inputNum">
+                 <input type="checkbox" v-model="item.checked" disabled/><h5 v-if="item.checked">Article ajouté au panier {{item.qty}} fois</h5>
               <label><strong>Quantité</strong></label>
-             <input type="number" id="qty" :min=0 class="style_input" value="0" v-model="item.qty">
+             <input type="number" id="qty" :min=1 class="style_input" value="0" v-model="item.qty">
               </div>
       </div>
     </div>
@@ -42,10 +45,12 @@ export default {
   data () {
     return {
       products: [],
+      productsBask: [],
       visible: false,
       static_url: 'assets/images/',
       images: [],
-      added: false
+      article: [],
+      qteArticle: []
     }
   },
   mounted () {
@@ -61,7 +66,12 @@ export default {
 
     async getProducts () {
       const response = await BasketService.fetchBasket()
-      this.products = response.data.products
+      this.productsBask = response.data.products
+      for (let i=0; i<this.productsBask.length; i++){
+       this.qteArticle.push(this.productsBask[i].qty)
+      }
+      this.article = this.qteArticle.reduce((a, b) => a + b)
+      this.qteArticle = []
     },
 
     async addBasket (item) {
@@ -80,16 +90,18 @@ export default {
           }
         })
       } else {
-      await BasketService.addBasket({
+        this.products = {
         id_origin: item._id,
         sticker: item.sticker,
         modele: item.modele,
         description: item.description,
         price: item.prix,
         qty: item.qty
-      })
-      this.added = true
       }
+      await BasketService.addBasket(this.products)
+        item.checked = true
+      }
+      this.getProducts()
     }
   }
 }
