@@ -44,6 +44,6 @@ export default {
   position: relative;
   bottom:0;
   width:100%;
-  height:240px;
+  height:245px;
 }
 </style>

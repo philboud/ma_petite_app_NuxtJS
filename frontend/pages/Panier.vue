@@ -112,7 +112,6 @@ export default {
   color:white;
 }
 .cadre{
-  margin-top: 10px;
   display: block;
   height: 1000px;
   overflow: auto;
@@ -120,6 +119,7 @@ export default {
  .total{
     background-color: rgb(181, 231, 181);
     margin-top: 5px;
+    margin-bottom: 10px;
     margin-left: 700px;
     width: 300px;
     border:lightseagreen solid;
