@@ -7,7 +7,9 @@
 <div class="card mb-3" style="max-width: 1000px;" v-for="(item, index) in images" :key="item._id">
   <div class="row no-gutters">
     <div class="col-md-4">
+      <div class="photo">
       <img :src="require('~/' + static_url + item.sticker +'.jpeg')">
+    </div>
     </div>
     <div class="col-md-8">
       <div class="card-body">
@@ -21,10 +23,12 @@
            
             <div  class="butt"><b-button @click="addBasket(item, index)"> Ajouter au panier</b-button></div>
               <div  class="inputNum">
+                <div class="qty">
                  <input type="checkbox" v-model="item.checked" disabled/><h5 v-if="item.checked">Article ajouté au panier {{item.qty}} fois</h5>
               <label><strong>Quantité</strong></label>
              <input type="number" id="qty" :min=1 class="style_input" value="0" v-model="item.qty">
               </div>
+          </div>
       </div>
     </div>
   </div>
@@ -111,6 +115,14 @@ export default {
 }
 </script>
 <style>
+.card{
+  background-color: rgb(173, 200, 209);
+  border-radius: 30px;
+}
+.photo{
+  padding-left: 20px;
+  padding-top: 20px
+}
 .cadre{
   display: block;
   height: 1000px;

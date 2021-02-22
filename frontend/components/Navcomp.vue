@@ -7,12 +7,6 @@
         <nuxt-link class="nav-link" to="/">Accueil</nuxt-link>
         </li>
         <li class="nav-item">
-          <nuxt-link class="nav-link" to="/items">Items</nuxt-link>
-        </li>
-        <li class="nav-item">
-          <nuxt-link class="nav-link" to="/profiles">Profils</nuxt-link>
-        </li>
-        <li class="nav-item">
           <nuxt-link class="nav-link" to="/addcar">Ajouter articles</nuxt-link>
         </li>
         <li class="nav-item">
@@ -25,8 +19,6 @@
 </template>
 
 <script>
-import Footer from '@/components/Footer.vue'
-import BasketService from '@/services/BasketService'
 export default {
     name: 'navcomp',
 }

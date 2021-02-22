@@ -4,17 +4,20 @@
      <div class="title">
       <h1>Votre panier</h1><br>
         <div class="total">
+           <b-button @click="validationBasket()"><h3>Valider votre panier</h3></b-button>
       <h2><strong>Total: </strong>{{total}}€</h2>
   </div>
     </div>
-    <div class="cadre">
+    <div class="cadrePanier">
       <div class="vide">
       <h2 v-if="products.length === 0">(Vide)</h2>
       </div>
         <div class="card mb-3" style="max-width: 1000px;" v-for="(item, index) in products" :key="item._id">
           <div class="row no-gutters">
             <div class="col-md-4">
+              <div class="photo">
               <img :src="require('~/' + static_url + item.sticker +'.jpeg')">
+            </div>
             </div>
             <div class="col-md-8">
               <div class="card-body">
@@ -27,7 +30,7 @@
                   </div>
                   <div>
                     <br><br>
-                   <b-button @click="deleteIt(item._id, index)">Supp</b-button>
+                     <b-button @click="deleteIt(item._id, index)">Supp</b-button>
                    </div>
                </div>
             </div>
@@ -35,6 +38,7 @@
       </div>
   </div>
   </div>
+  
 </template>
 <script>
 import BasketService from '@/services/BasketService'
@@ -100,20 +104,27 @@ export default {
         qty: item.qty
         })
       this.getProductsTotal()
+    },
+    validationBasket () {
+      this.$router.push('Validation')
     }
   }
 }
 </script>
-<style scoped>
+<style>
 .alignQty{
   float: right;
+}
+.photo{
+  padding-left: 20px;
+  padding-top: 20px
 }
 .vide{
   color:white;
 }
-.cadre{
+.cadrePanier{
   display: block;
-  height: 1000px;
+  height: 930px;
   overflow: auto;
 }
  .total{
