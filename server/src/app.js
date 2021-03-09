@@ -7,6 +7,7 @@ var Item = require("../models/items.model")
 var Profile = require("../models/profile.model")
 var Product = require("../models/basket.model")
 var Refimage = require("../models/refimage.model")
+const uri = process.env.MONGODB_URI;
 
 mongoose.connect('mongodb://localhost:27017/itemsDB');
 var db = mongoose.connection;
