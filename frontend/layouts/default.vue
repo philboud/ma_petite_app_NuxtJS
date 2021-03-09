@@ -2,8 +2,7 @@
 <div>
   <div class="back">
     <Navcomp />
-<div class="title"><p>Lux cars</p></div>
-<div class="container">
+<div>
       <Nuxt />
   </div>
    </div>
@@ -25,6 +24,10 @@ export default {
 </script>
 
 <style>
+.container{
+  margin-top: 50px;
+  width: 2200px;
+}
 .back{
   margin:0;
   padding:0;
@@ -38,12 +41,13 @@ export default {
 }
 .title{
   color: aliceblue;
+  margin-top: 50px;
 }
 .foot{
   border: 0.2em solid;
   position: relative;
   bottom:0;
   width:100%;
-  height:245px;
+  height:290px;
 }
 </style>

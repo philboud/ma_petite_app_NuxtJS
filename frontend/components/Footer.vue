@@ -36,7 +36,7 @@
 
 <style>
 .footerColor{
-    height:250px;
+    height:300px;
     border: 1px solid;
     }
 </style>

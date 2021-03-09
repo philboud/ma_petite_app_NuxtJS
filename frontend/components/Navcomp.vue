@@ -1,7 +1,7 @@
 <template>
 <div>
       <div class="navfont">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <nav class="navbar navbar-expand -sm navbar-dark bg-dark fixed-top">
     <ul class="navbar-nav">
       <li class="nav-item">
         <nuxt-link class="nav-link" to="/">Accueil</nuxt-link>

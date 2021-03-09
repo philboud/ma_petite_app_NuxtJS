@@ -4,6 +4,7 @@
   <h1 class="title">ShowRoom</h1>
   <h5 class="title">Nombre d'article(s) dans le panier: {{article}}</h5>
   <div class="cadre">
+    <div class="card-column">
 <div class="card mb-3" style="max-width: 1000px;" v-for="(item, index) in images" :key="item._id">
   <div class="row no-gutters">
     <div class="col-md-4">
@@ -27,6 +28,7 @@
                  <input type="checkbox" v-model="item.checked" disabled/><h5 v-if="item.checked">Article ajouté au panier {{item.qty}} fois</h5>
               <label><strong>Quantité</strong></label>
              <input type="number" id="qty" :min=1 class="style_input" value="0" v-model="item.qty">
+              </div>
               </div>
           </div>
       </div>
@@ -116,7 +118,7 @@ export default {
 </script>
 <style>
 .card{
-  background-color: rgb(173, 200, 209);
+  background-color: rgb(191, 235, 202);
   border-radius: 30px;
 }
 .photo{
@@ -125,11 +127,11 @@ export default {
 }
 .cadre{
   display: block;
-  height: 1000px;
+  height: 900px;
   overflow: auto;
 }
 title{
-  color: aliceblue;
+   color: aliceblue;
 }
 input[type=number] {
   width: 120px;

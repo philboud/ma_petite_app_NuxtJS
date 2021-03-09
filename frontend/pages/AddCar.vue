@@ -1,7 +1,7 @@
 <template>
   <div>
     <br>
-   <div>
+   <div class="cadreAdd">
   <b-card bg-variant="light">
     <b-form-group
       label-cols-lg="3"
@@ -53,6 +53,7 @@
         </b-form-group>
     </b-form-group>
     <b-button @click="addArticle">Ajouter</b-button>
+    <b-button @click="onClickCancel">Annuler</b-button>
   </b-card>
 </div>
   </div>
@@ -78,9 +79,11 @@ export default {
     }
   },
    methods: {
+     onClickCancel () {
+       this.$router.push({ name: 'index' })
+     },
      async addArticle () {
-          if (this.refimages.sticker === '')
-            {
+          if (this.refimages.sticker === '')            {
             this.refimages.sticker = 'noImage'
             }
             if (this.refimages.image === '')
@@ -101,7 +104,8 @@ export default {
 }
 </script>
 <style>
-  .stripedTable{
+  .cadreAdd{
+    margin-top: 10%;
     margin-left: 25%;
     width: 50%;
   }

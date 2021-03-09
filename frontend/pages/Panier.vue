@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <br>
      <div class="title">
       <h1>Votre panier</h1><br>
@@ -26,7 +26,7 @@
                 <h5>{{item.description}}</h5>
                 <div class="alignQty">
                 <h2>{{item.price}}€ </h2>
-                  <input type="number" :min=1 @click="changePrice(item, index)" v-model="item.qty"/>
+                  <input type="number" :min=1 @click="changePriceOnClick(item, index)" v-model="item.qty"/>
                   </div>
                   <div>
                     <br><br>
@@ -59,7 +59,7 @@ export default {
   methods: {
         deleteIt (item, idx) {
       Swal.fire({
-        title: 'Etes vous certain?',
+        title: 'Etes vous certain de vouloir supprimé cet article?',
         text: 'Cette opération est irreversible!',
         icon: 'warning',
         showCancelButton: true,
@@ -95,6 +95,33 @@ export default {
       var id = row.item._id
       this.$router.push('accueil/' + id)
     },
+    changePriceOnClick (item,idx) {
+      var oldItem = item.qty - 1
+      console.log('old', oldItem)
+            Swal.fire({
+        title: 'Etes vous certain de modifier la quantité?',
+        icon: 'warning',
+        showCancelButton: true,
+        cancelButtonText: 'Annulé',
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Oui'
+      }).then((result) => {
+         if (result.isConfirmed) {
+          this.changePrice(item, idx)
+          Swal.fire(
+            'Modifié!'
+          )
+        }else{
+          Swal.fire(
+            'Annulé!'
+          )
+          if(item.qty<<item.qty) {
+          item.qty = item.qty -1
+          }
+        }
+      })
+    },
     async changePrice (item,idx) {
      await BasketService.updateBasket({
         modele: item.modele,
@@ -124,11 +151,13 @@ export default {
 }
 .cadrePanier{
   display: block;
-  height: 930px;
+  height: 900px;
   overflow: auto;
 }
  .total{
-    background-color: rgb(181, 231, 181);
+    padding-top: 15px;
+    border-radius: 20px;
+    background-color: rgb(117, 159, 236);
     margin-top: 5px;
     margin-bottom: 10px;
     margin-left: 700px;
