@@ -4,14 +4,14 @@ const cors = require('cors')
 const morgan = require('morgan')
 const path = require('path')
 var mongoose = require('mongoose')
-var Item = require("./server/models/items.model")
-var Profile = require("./server/models/profile.model")
-var Product = require("./server/models/basket.model")
-var Refimage = require("./server/models/refimage.model")
+var Item = require("./models/items.model")
+var Profile = require("./models/profile.model")
+var Product = require("./models/basket.model")
+var Refimage = require("./models/refimage.model")
 const uri = process.env.MONGODB_URI;
 
 
-mongoose.connect('mongodb+srv://phil:8qbGPicrSnWrJ6x@my-littlte-app-cluster.fuzbi.mongodb.net/itemDB?retryWrites=true&w=majority');
+mongoose.connect('mongodb+srv://phil:8qbGPicrSnWrJ6x@my-littlte-app-cluster.fuzbi.mongodb.net/itemDB?retryWrites=true&w=majority',{ useNewUrlParser: true, useUnifiedTopology: true });
 var db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error"));
 db.once("open", function(callback){
@@ -22,6 +22,7 @@ const app = express()
 app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors())
+
 
 // Fetch all profiles
 app.get('/profiles', (req, res) => {

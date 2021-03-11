@@ -4,8 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "server": "./node_modules/nodemon/bin/nodemon.js app.js",
-    "start": "(npm run server)",
+    "start": "./node_modules/nodemon/bin/nodemon.js app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -13,8 +12,10 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "config": "3.3.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "mongodb": "^3.6.3",
     "mongoose": "^5.11.12",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.7"

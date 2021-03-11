@@ -11,7 +11,7 @@ var Refimage = require("./models/refimage.model")
 const uri = process.env.MONGODB_URI;
 
 
-mongoose.connect('mongodb+srv://phil:8qbGPicrSnWrJ6x@my-littlte-app-cluster.fuzbi.mongodb.net/itemDB?retryWrites=true&w=majority');
+mongoose.connect('mongodb+srv://phil:8qbGPicrSnWrJ6x@my-littlte-app-cluster.fuzbi.mongodb.net/itemDB?retryWrites=true&w=majority',{ useNewUrlParser: true, useUnifiedTopology: true });
 var db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error"));
 db.once("open", function(callback){
@@ -22,6 +22,7 @@ const app = express()
 app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors())
+
 
 // Fetch all profiles
 app.get('/profiles', (req, res) => {

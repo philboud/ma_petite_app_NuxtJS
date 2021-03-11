@@ -4,10 +4,10 @@ const cors = require('cors')
 const morgan = require('morgan')
 const path = require('path')
 var mongoose = require('mongoose')
-var Item = require("../models/items.model")
-var Profile = require("../models/profile.model")
-var Product = require("../models/basket.model")
-var Refimage = require("../models/refimage.model")
+var Item = require("../../models/items.model")
+var Profile = require("../../models/profile.model")
+var Product = require("../../models/basket.model")
+var Refimage = require("../../models/refimage.model")
 const uri = process.env.MONGODB_URI;
 
 
