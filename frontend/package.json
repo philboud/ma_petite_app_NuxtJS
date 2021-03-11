@@ -7,7 +7,8 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "test": "npm-run-all -p -r start ../server/node_modules/nodemon/bin/nodemon.js src/app.js",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "axios": "^0.21.1",
