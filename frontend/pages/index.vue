@@ -61,10 +61,11 @@ export default {
   },
   mounted () {
     this.getImage()
-    this.getProducts()
+   this.getProducts()
   },
 
   methods: {
+
     async getImage () {
       const response = await RefimageService.fetchRefimages()
       this.images = response.data.refimages
@@ -73,15 +74,16 @@ export default {
     async getProducts () {
       const response = await BasketService.fetchBasket()
       this.productsBask = response.data.products
-      for (let i=0; i<this.productsBask.length; i++){
-       this.qteArticle.push(this.productsBask[i].qty)
-      }
-      if (this.qteArticle.length == 0) {
-        this.article = 0
-      } else {
-      this.article = this.qteArticle.reduce((a, b) => a + b)
-      this.qteArticle = []
-      }
+      console.log(this.productsBask)
+  //    for (let i=0; i<this.productsBask.length; i++){
+  //     this.qteArticle.push(this.productsBask[i].qty)
+  //    }
+  //    if (this.qteArticle.length == 0) {
+  //      this.article = 0
+  //    } else {
+  //    this.article = this.qteArticle.reduce((a, b) => a + b)
+  //    this.qteArticle = []
+  //    }
     },
 
     async addBasket (item) {

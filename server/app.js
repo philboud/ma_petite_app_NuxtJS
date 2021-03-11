@@ -4,10 +4,10 @@ const cors = require('cors')
 const morgan = require('morgan')
 const path = require('path')
 var mongoose = require('mongoose')
-var Item = require("./server/models/items.model")
-var Profile = require("./server/models/profile.model")
-var Product = require("./server/models/basket.model")
-var Refimage = require("./server/models/refimage.model")
+var Item = require("./models/items.model")
+var Profile = require("./models/profile.model")
+var Product = require("./models/basket.model")
+var Refimage = require("./models/refimage.model")
 const uri = process.env.MONGODB_URI;
 
 
@@ -22,11 +22,6 @@ const app = express()
 app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors())
-
-app.use(express.static(path.join(__dirname, "./dist")))
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, './dist', 'index.html'))
-})
 
 // Fetch all profiles
 app.get('/profiles', (req, res) => {
