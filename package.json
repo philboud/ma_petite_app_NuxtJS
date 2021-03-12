@@ -1,26 +1,24 @@
 {
-  "name": "server",
+  "name": "frontend",
   "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
+  "private": true,
   "scripts": {
-    "start": "./node_modules/nodemon/bin/nodemon.js app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "test": "npm-run-all -p -r start ../server/node_modules/nodemon/bin/nodemon.js src/app.js",
+    "generate": "nuxt generate",
+    "heroku-postbuild": "npm run build"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "config": "3.3.1",
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "mongodb": "^3.6.3",
-    "mongoose": "^5.11.12",
-    "morgan": "^1.10.0",
-    "nodemon": "^2.0.7"
+    "axios": "^0.21.1",
+    "bootstrap": "^4.6.0",
+    "bootstrap-input-spinner": "^1.17.2",
+    "bootstrap-vue": "^2.21.2",
+    "core-js": "^3.8.3",
+    "nuxt": "^2.14.12",
+    "sweetalert2": "^10.15.0",
+    "vue-number-input-spinner": "^2.2.0"
   },
-  "engines": {
-    "node": "14.x"
-  }
+  "devDependencies": {}
 }
