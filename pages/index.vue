@@ -75,15 +75,15 @@ export default {
       const response = await BasketService.fetchBasket()
       this.productsBask = response.data.products
       console.log(this.productsBask)
-  //    for (let i=0; i<this.productsBask.length; i++){
-  //     this.qteArticle.push(this.productsBask[i].qty)
-  //    }
-  //    if (this.qteArticle.length == 0) {
-  //      this.article = 0
-  //    } else {
-  //    this.article = this.qteArticle.reduce((a, b) => a + b)
-  //    this.qteArticle = []
-  //    }
+      for (let i=0; i<this.productsBask.length; i++){
+       this.qteArticle.push(this.productsBask[i].qty)
+      }
+      if (this.qteArticle.length == 0) {
+        this.article = 0
+      } else {
+      this.article = this.qteArticle.reduce((a, b) => a + b)
+      this.qteArticle = []
+      }
     },
 
     async addBasket (item) {
