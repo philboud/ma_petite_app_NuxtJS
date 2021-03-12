@@ -97,8 +97,7 @@ export default {
     },
     changePriceOnClick (item,idx) {
       var oldItem = item.qty - 1
-      console.log('old', oldItem)
-            Swal.fire({
+           Swal.fire({
         title: 'Etes vous certain de modifier la quantité?',
         icon: 'warning',
         showCancelButton: true,
