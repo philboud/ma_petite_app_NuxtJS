@@ -12,8 +12,6 @@
     <div class="col-sm">
       <h4>Navigation</h4>
             <nuxt-link class="nav-link" to="/">Accueil</nuxt-link>
-            <nuxt-link class="nav-link" to="/profiles">Profils</nuxt-link>
-            <nuxt-link class="nav-link" to="/items">Items</nuxt-link>
             <nuxt-link class="nav-link" to="/addCar">Ajouter un article</nuxt-link>
             <nuxt-link class="nav-link" to="/panier">Panier</nuxt-link>
     </div>
