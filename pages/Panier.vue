@@ -42,6 +42,7 @@
 </template>
 <script>
 import BasketService from '@/services/BasketService'
+import Swal from 'sweetalert2'
 
 export default {
   name: 'basket',
