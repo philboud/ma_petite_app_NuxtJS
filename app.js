@@ -26,10 +26,6 @@ app.use(bodyParser.json())
 app.use(cors())
 
 app.use(express.static(path.join(__dirname, "./dist")))
-app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, './dist', 'index.html'))
-})
-
 
 // Fetch all profiles
 app.get('/profiles', (req, res) => {
