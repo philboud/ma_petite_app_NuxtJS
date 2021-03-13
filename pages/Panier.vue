@@ -26,7 +26,7 @@
                 <h5>{{item.description}}</h5>
                 <div class="alignQty">
                 <h2>{{item.price}}€ </h2>
-                  <input type="number" :min=1 @click="changePriceOnClick(item, index)" v-model="item.qty"/>
+                  <input type="number" :min=1 @click="changePrice(item, index)" v-model="item.qty"/>
                   </div>
                   <div>
                     <br><br>
@@ -96,7 +96,7 @@ export default {
       var id = row.item._id
       this.$router.push('accueil/' + id)
     },
-    changePriceOnClick (item,idx) {
+    changePriceOnClick_En_standby (item,idx) {
       var oldItem = item.qty - 1
            Swal.fire({
         title: 'Etes vous certain de modifier la quantité?',
@@ -132,6 +132,7 @@ export default {
         })
       this.getProductsTotal()
     },
+
     validationBasket () {
       this.$router.push('Validation')
     }
@@ -141,6 +142,7 @@ export default {
 <style>
 .alignQty{
   float: right;
+  margin-bottom: 20px;
 }
 .photo{
   padding-left: 20px;
