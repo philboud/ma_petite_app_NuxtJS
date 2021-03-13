@@ -2,7 +2,7 @@
 <div class="container">
   <div class="back">
     <Navcomp />
-<div>
+<div class="showroom">
       <Nuxt />
   </div>
    </div>
@@ -24,6 +24,9 @@ export default {
 </script>
 
 <style>
+.showroom{
+  margin-top: 100px;
+}
 .container{
   margin-top: 50px;
   width: 2200px;
