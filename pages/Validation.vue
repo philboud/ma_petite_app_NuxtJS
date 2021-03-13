@@ -15,7 +15,7 @@ export default {
 methods: {
     onclick () {
              Swal.fire({
-      title: 'Merci de réapprovisionner votre compte, celui semble un peu maigre!!!!',
+      title: 'Merci de réapprovisionner votre compte, celui-ci semble un peu maigre!!!!',
         showClass: {
             popup: 'swal2-show',
             backdrop: 'swal2-backdrop-show',

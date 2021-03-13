@@ -1,6 +1,6 @@
 <template>
 
-<div class="container">
+<div>
   <div class="row">
     <div class="col-sm">
       <h4>Services</h4>
