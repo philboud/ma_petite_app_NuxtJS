@@ -25,9 +25,9 @@
             <div  class="butt"><b-button @click="addBasket(item, index)"> Ajouter au panier</b-button></div>
               <div  class="inputNum">
                 <div class="qty">
-                 <input type="checkbox" v-model="item.checked" disabled/><h5 v-if="item.checked">Article ajouté au panier {{item.qty}} fois</h5>
+                 <h5 v-if="item.checked">Article ajouté au panier {{item.qty}} fois</h5>
               <label><strong>Quantité</strong></label>
-             <input type="number" id="qty" :min=1 class="style_input" value="0" v-model="item.qty">
+             <input type="number" id="qty" :min=1 class="style_input" value=1 v-model="item.qty">
               </div>
               </div>
           </div>
@@ -87,21 +87,10 @@ export default {
     },
 
     async addBasket (item) {
+      
       if(item.qty === undefined) {
-     Swal.fire({
-      title: 'Vous n avez pas selectionné la quantité ',
-        showClass: {
-            popup: 'swal2-show',
-            backdrop: 'swal2-backdrop-show',
-            icon: 'swal2-icon-show'
-      },
-      hideClass: {
-            popup: 'swal2-hide',
-            backdrop: 'swal2-backdrop-hide',
-            icon: 'swal2-icon-hide'
-          }
-        })
-      } else {
+        item.qty = 1
+      } 
         this.products = {
         id_origin: item._id,
         sticker: item.sticker,
@@ -109,10 +98,10 @@ export default {
         description: item.description,
         price: item.prix,
         qty: item.qty
-      }
+        }
       await BasketService.addBasket(this.products)
         item.checked = true
-      }
+      
       this.getProducts()
     }
   }
