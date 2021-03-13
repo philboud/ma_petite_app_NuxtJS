@@ -131,5 +131,6 @@ input[type=number] {
 }
 .inputNum{
   float: right;
+  margin-bottom: 20px;
 }
  </style>
