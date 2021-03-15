@@ -80,9 +80,8 @@ export default {
       })
     },
     async getProducts () {
-      const response = await BasketService.fetchBasket()
-      this.products = response.data.products
-    },
+      this.products = JSON.parse(localStorage.getItem('panier'))
+      },
     async getProductsTotal () {
       const response = await BasketService.fetchBasketTotal()
       this.total = response.data.total
