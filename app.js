@@ -10,6 +10,14 @@ var Product = require("./models/basket.model")
 var Refimage = require("./models/refimage.model")
 const uri = process.env.MONGODB_URI;
 
+app.use(require('cors')());
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET", "PUT", "POST", "DELETE", "OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    next();
+});
+
 
 mongoose.connect('mongodb+srv://phil:8qbGPicrSnWrJ6x@my-littlte-app-cluster.fuzbi.mongodb.net/itemDB?retryWrites=true&w=majority',{ useNewUrlParser: true, useUnifiedTopology: true });
 var db = mongoose.connection;
