@@ -12,21 +12,25 @@ import Swal from 'sweetalert2'
 
 export default {
     name:'validation',
+      data () {
+    return {
+        products: []
+    }
+      },
 methods: {
     onclick () {
-             Swal.fire({
-      title: 'Merci de réapprovisionner votre compte, celui-ci semble un peu maigre!!!!',
-        showClass: {
-            popup: 'swal2-show',
-            backdrop: 'swal2-backdrop-show',
-            icon: 'swal2-icon-show'
-      },
-      hideClass: {
-            popup: 'swal2-hide',
-            backdrop: 'swal2-backdrop-hide',
-            icon: 'swal2-icon-hide'
-          }
-        })
+Swal.fire({
+  title: 'Dommage...!',
+  text: "Votre compte en banque semble un peu maigre, merci de le ré-approvisionner!!!",
+  icon: 'warning',
+  showCancelButton: false
+}).then((result) => {
+  if (result.isConfirmed) {
+       localStorage.setItem('panier', JSON.stringify(this.products)),
+       this.$router.push('/')    
+  }
+})
+
     }
 }
 }

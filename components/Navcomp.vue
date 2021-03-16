@@ -21,6 +21,10 @@
 <script>
 export default {
     name: 'navcomp',
+      
+  mounted () {
+    
+  },
 }
 </script>
 

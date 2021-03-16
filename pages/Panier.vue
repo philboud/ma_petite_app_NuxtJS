@@ -26,7 +26,7 @@
                 <h5>{{item.description}}</h5>
                 <div class="alignQty">
                 <h2>{{item.price}}€ </h2>
-                  <input type="number" :min=1 @click="changePrice(item, index)" v-model="item.qty"/>
+                  <input type="number" :min=1 @click="changePriceOnClick(item, index)" v-model="item.qty"/>
                   </div>
                   <div>
                     <br><br>
@@ -55,6 +55,9 @@ export default {
     }
   },
   mounted () {
+    if(localStorage.getItem('panier') == null) {
+      this.products = []
+    }
     this.getProducts()
     this.getProductsTotal()
   },
@@ -84,15 +87,17 @@ export default {
       this.products = JSON.parse(localStorage.getItem('panier'))
       },
     async getProductsTotal () {
-      if (this.products.length == 0){
+      if(localStorage.getItem('panier') === null){
         this.total = 0
       }
       this.getProducts()
       this.productsTotal = []
       for(var i = 0; i<this.products.length; i++){
-        this.productsTotal.push(this.products[i].price)
+        this.productsTotal.push(this.products[i].price * this.products[i].qty)
         } 
+        if (this.productsTotal.length != 0){
         this.total = (this.productsTotal).reduce((a, b) => a + b)
+        }
     },
     async deleteProduct (id, idx) {
       this.products.splice(idx, 1)
@@ -100,13 +105,8 @@ export default {
       localStorage.setItem('panier', JSON.stringify(this.products))
        this.getProductsTotal()
     },
-    editProduct (row) {
-      var id = row.item._id
-      this.$router.push('accueil/' + id)
-    },
-    changePriceOnClick_En_standby (item,idx) {
-      var oldItem = item.qty - 1
-           Swal.fire({
+    changePriceOnClick (item,idx) {
+      Swal.fire({
         title: 'Etes vous certain de modifier la quantité?',
         icon: 'warning',
         showCancelButton: true,
@@ -116,7 +116,9 @@ export default {
         confirmButtonText: 'Oui'
       }).then((result) => {
          if (result.isConfirmed) {
-          this.getProductsTotal()
+              localStorage.removeItem('panier')
+              localStorage.setItem('panier', JSON.stringify(this.products))
+              this.getProductsTotal()
           Swal.fire(
             'Modifié!'
           )
