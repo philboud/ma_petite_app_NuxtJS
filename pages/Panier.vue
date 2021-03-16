@@ -49,6 +49,7 @@ export default {
   data () {
     return {
       products: [],
+      productsTotal: [],
       total: '',
       static_url: 'assets/images/'
     }
@@ -83,13 +84,21 @@ export default {
       this.products = JSON.parse(localStorage.getItem('panier'))
       },
     async getProductsTotal () {
-      const response = await BasketService.fetchBasketTotal()
-      this.total = response.data.total
+      if (this.products.length == 0){
+        this.total = 0
+      }
+      this.getProducts()
+      this.productsTotal = []
+      for(var i = 0; i<this.products.length; i++){
+        this.productsTotal.push(this.products[i].price)
+        } 
+        this.total = (this.productsTotal).reduce((a, b) => a + b)
     },
     async deleteProduct (id, idx) {
       this.products.splice(idx, 1)
-      await BasketService.deleteBasket(id)
-      this.getProductsTotal()
+      localStorage.removeItem('panier')
+      localStorage.setItem('panier', JSON.stringify(this.products))
+       this.getProductsTotal()
     },
     editProduct (row) {
       var id = row.item._id
@@ -107,7 +116,7 @@ export default {
         confirmButtonText: 'Oui'
       }).then((result) => {
          if (result.isConfirmed) {
-          this.changePrice(item, idx)
+          this.getProductsTotal()
           Swal.fire(
             'Modifié!'
           )
@@ -122,14 +131,7 @@ export default {
       })
     },
     async changePrice (item,idx) {
-     await BasketService.updateBasket({
-        modele: item.modele,
-        description: item.description,
-        price: item.price,
-        id:this.products[idx]._id,
-        qty: item.qty
-        })
-      this.getProductsTotal()
+        this.getProductsTotal()
     },
 
     validationBasket () {

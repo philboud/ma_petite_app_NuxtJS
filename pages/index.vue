@@ -51,6 +51,7 @@ export default {
   data () {
     return {
       products: [],
+      productstmp: [],
       productsBask: [],
       visible: false,
       static_url: 'assets/images/',
@@ -61,7 +62,7 @@ export default {
   },
   mounted () {
     this.getImage()
-   this.getProducts()
+    this.getProducts()
   },
 
   methods: {
@@ -72,15 +73,16 @@ export default {
     },
 
     async getProducts () {
-      const response = await BasketService.fetchBasket()
-      this.productsBask = response.data.products
-      console.log(this.productsBask)
-      for (let i=0; i<this.productsBask.length; i++){
-       this.qteArticle.push(this.productsBask[i].qty)
+      
+      this.products = JSON.parse(localStorage.getItem('panier'))
+       if ( this.products == null ){ this.products = [] } else {
+         for (let i=0; i<this.products.length; i++){
+       this.qteArticle.push(parseInt(this.products[i].qty))
+        }
       }
-      if (this.qteArticle.length == 0) {
-        this.article = 0
-      } else {
+       if (this.qteArticle.length == 0) {
+          this.article = 0
+        } else {
       this.article = this.qteArticle.reduce((a, b) => a + b)
       this.qteArticle = []
       }
@@ -91,7 +93,7 @@ export default {
       if(item.qty === undefined) {
         item.qty = 1
       } 
-        this.products = {
+        this.productstmp = {
         id_origin: item._id,
         sticker: item.sticker,
         modele: item.modele,
@@ -99,7 +101,8 @@ export default {
         price: item.prix,
         qty: item.qty
         }
-      await BasketService.addBasket(this.products)
+        this.products.push(this.productstmp)
+      await localStorage.setItem('panier', JSON.stringify(this.products))
         item.checked = true
       
       this.getProducts()
