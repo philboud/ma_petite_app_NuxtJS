@@ -5,9 +5,9 @@
   <h5 class="title">Nombre d'article(s) dans le panier: {{article}}</h5>
   <div class="cadre">
     <div class="card-column">
-<div class="card mb-3" style="max-width: 1000px;" v-for="(item, index) in images" :key="item._id">
+<div class="card mb-4" style="max-width: 700px;" v-for="(item, index) in images" :key="item._id">
   <div class="row no-gutters">
-    <div class="col-md-4">
+    <div class="col-md-5">
       <div class="photo">
       <img :src="require('~/' + static_url + item.sticker +'.jpeg')">
     </div>
