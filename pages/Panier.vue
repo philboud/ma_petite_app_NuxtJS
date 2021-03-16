@@ -12,9 +12,9 @@
       <div class="vide">
       <h2 v-if="products.length === 0">(Vide)</h2>
       </div>
-        <div class="card mb-3" style="max-width: 1000px;" v-for="(item, index) in products" :key="item._id">
+        <div class="card mb-4" style="max-width: 700px;" v-for="(item, index) in products" :key="item._id">
           <div class="row no-gutters">
-            <div class="col-md-4">
+            <div class="col-md-5">
               <div class="photo">
               <img :src="require('~/' + static_url + item.sticker +'.jpeg')">
             </div>
