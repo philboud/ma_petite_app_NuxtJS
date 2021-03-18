@@ -12,6 +12,9 @@
         <li class="nav-item">
           <nuxt-link class="nav-link" to="/panier">Panier</nuxt-link>
         </li>
+        <li class="nav-item">
+          <nuxt-link class="nav-link" to="/chat">Chat</nuxt-link>
+        </li>
         </ul>
      </nav>
        </div>
