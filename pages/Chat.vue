@@ -44,7 +44,7 @@ export default {
             user: '',
             message: '',
             messages: [],
-            socket : io('localhost:3001')
+            socket : io.connect(window.location.hostname)
         }
     },
         mounted() {
