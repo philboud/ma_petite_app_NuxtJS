@@ -1,6 +1,6 @@
 <template>
 
-<div>
+<div class="footerColor">
   <div class="row">
     <div class="col-sm">
       <h4>Services</h4>
@@ -34,7 +34,7 @@
 
 <style>
 .footerColor{
-    height:300px;
+    height:auto;
     border: 1px solid;
     }
 </style>

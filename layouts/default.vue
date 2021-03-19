@@ -29,7 +29,7 @@ export default {
 }
 .container{
   margin-top: 50px;
-  width: 2200px;
+  width: 1000px;
 }
 .back{
   margin:0;
@@ -47,10 +47,9 @@ export default {
   margin-top: 50px;
 }
 .foot{
-  border: 0.2em solid;
   position: relative;
   bottom:0;
   width:100%;
-  height:290px;
+  height:auto;
 }
 </style>
