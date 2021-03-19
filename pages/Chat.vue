@@ -1,4 +1,5 @@
 <template>
+<div class="cadre">
   <div class="card mt-3">
       <div class="card-body">
           <div class="card-title">
@@ -23,10 +24,11 @@
               </div>
               <button type="submit" class="btn btn-success">Send</button>
           </form>
-                              <div>
-                     <b-table striped hover :items="messages" :fields="fields"></b-table>
+                              <div id="messageForm">
+                     <span v-for="(item, id) in messages" :key="id">{{item.user}}:<br>{{item.message}}<br><br></span>
                 </div>
       </div>
+    </div>
   </div>
 </template>
 
@@ -67,3 +69,12 @@ export default {
     },
 }
     </script>
+
+    <style>
+        #messageForm{
+            border: 1px solid;
+        }
+        .cadre{
+            width: 400px;
+        }
+    </style>
