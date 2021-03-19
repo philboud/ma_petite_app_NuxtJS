@@ -12,7 +12,7 @@
       <div class="vide">
       <h2 v-if="products.length === 0">(Vide)</h2>
       </div>
-        <div class="card mb-4" style="max-width: 700px;" v-for="(item, index) in products" :key="item._id">
+        <div class="card mb-4" style="max-width: 400px;" v-for="(item, index) in products" :key="item._id">
           <div class="row no-gutters">
             <div class="col-md-5">
               <div class="photo">
@@ -106,32 +106,16 @@ export default {
        this.getProductsTotal()
     },
     changePriceOnClick (item,idx) {
-      Swal.fire({
-        title: 'Etes vous certain de modifier la quantité?',
-        icon: 'warning',
-        showCancelButton: true,
-        cancelButtonText: 'Annulé',
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Oui'
-      }).then((result) => {
-         if (result.isConfirmed) {
+              
               localStorage.removeItem('panier')
               localStorage.setItem('panier', JSON.stringify(this.products))
               this.getProductsTotal()
-          Swal.fire(
-            'Modifié!'
-          )
-        }else{
-          Swal.fire(
-            'Annulé!'
-          )
-          if(item.qty<<item.qty) {
+                   if(item.qty<<item.qty) {
           item.qty = item.qty -1
-          }
-        }
-      })
+         }
+   
     },
+
     async changePrice (item,idx) {
         this.getProductsTotal()
     },
@@ -165,7 +149,7 @@ export default {
     background-color: rgb(117, 159, 236);
     margin-top: 5px;
     margin-bottom: 10px;
-    margin-left: 700px;
+    margin-left: 100px;
     width: 300px;
     border:lightseagreen solid;
     text-align: center;
