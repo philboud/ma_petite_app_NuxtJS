@@ -22,8 +22,9 @@
                   <label for="message">Message:</label>
                   <input type="text" v-model="message" class="form-control">
               </div>
-              <button type="submit" class="btn btn-success">Send</button>
+              <button type="submit" class="btn btn-success">Envoyer</button>
           </form>
+            <br>
                               <div id="messageForm">
 
                      <ul v-for="(item, id) in messages" :key="id">
