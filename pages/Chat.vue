@@ -15,7 +15,7 @@
       <div class="card-footer">
           <form @submit.prevent="sendMessage">
               <div class="form-group">
-                  <label for="user">User:</label>
+                  <label for="user">Utilisateur:</label>
                   <input type="text" v-model="user" class="form-control">
               </div>
               <div class="gorm-group pb-3">
@@ -25,7 +25,10 @@
               <button type="submit" class="btn btn-success">Send</button>
           </form>
                               <div id="messageForm">
-                     <span v-for="(item, id) in messages" :key="id">{{item.user}}:<br>{{item.message}}<br><br></span>
+
+                     <ul v-for="(item, id) in messages" :key="id">
+                         <li>{{item.user}}:<br>{{item.message}}<br>{{item.timeStamp}}<br><br></li>
+                         </ul>
                 </div>
       </div>
     </div>
@@ -34,26 +37,24 @@
 
 <script>
 import io from 'socket.io-client'
+import ChatService from '@/services/ChatService'
+import moment from 'moment'
 
 export default {
     name: 'Chat',
     data() {
         return {
-            fields: [
-                {key: 'user', label: 'utilisateur'},
-                {key: 'message', label: 'Message'}
-            ],
             user: '',
             message: '',
             messages: [],
-            socket : io("https://mysterious-gorge-74405.herokuapp.com")
+            socket : io("https://mysterious-gorge-74405.herokuapp.com"),
         }
     },
         mounted() {
-        this.socket.on('MESSAGE', (data) => {
+            this.getChats()            
+            this.socket.on('MESSAGE', (data) => {
             this.messages = [...this.messages, data];
-            console.log(this.messages)
-        });
+             });
     },
  methods: {
         sendMessage(e) {
@@ -62,11 +63,25 @@ export default {
             
             this.socket.emit('SEND_MESSAGE', {
                 user: this.user,
-                message: this.message
+                message: this.message,
+                timeStamp: moment().format('LT'),
             });
+            this.addChats()
             this.message = ''
-        }
-    },
+        },
+        async getChats () {
+        const response = await ChatService.fetchChat()
+        this.messages = response.data.chat
+       },
+
+       async addChats () {
+         await ChatService.addChat({
+            user: this.user,
+            message: this.message,
+            timeStamp : timeStamp
+      })
+    }
+  }    
 }
     </script>
 
