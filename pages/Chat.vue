@@ -78,7 +78,7 @@ export default {
          await ChatService.addChat({
             user: this.user,
             message: this.message,
-            timeStamp : timeStamp
+            timeStamp: moment().format('LT')
       })
     }
   }    
