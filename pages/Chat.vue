@@ -44,7 +44,7 @@ export default {
             user: '',
             message: '',
             messages: [],
-            socket : io.connect("https://mysterious-gorge-74405.herokuapp.com")
+            socket : io("https://mysterious-gorge-74405.herokuapp.com")
         }
     },
         mounted() {
