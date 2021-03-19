@@ -27,10 +27,10 @@
                               <div id="messageForm">
 
                      <ul v-for="(item, id) in messages" :key="id">
-                         <li>{{item.user}}:<br>{{item.message}}<br>{{item.timeStamp}}<br><br></li>
+                        <div class="bulle"><li>{{item.user}}:<br>{{item.message}}<br>{{item.timeStamp}}<br><br></li></div>
                          </ul>
                 </div>
-      </div>
+         </div>
     </div>
   </div>
 </template>
@@ -91,5 +91,14 @@ export default {
         }
         .cadre{
             width: 400px;
+        }
+        .bulle{
+            margin-top: 10px;
+            margin-left: -10px;
+            width: 300px;
+            padding-left: 30px;
+            border: 1px solid;
+            border-radius: 10px;
+            background-color: aqua;
         }
     </style>
