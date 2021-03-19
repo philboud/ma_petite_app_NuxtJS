@@ -60,11 +60,11 @@ export default {
         sendMessage(e) {
             
             e.preventDefault();
-            
+            moment.locale('fr')
             this.socket.emit('SEND_MESSAGE', {
                 user: this.user,
                 message: this.message,
-                timeStamp: moment().format('LT'),
+                timeStamp: moment().calendar(),
             });
             this.addChats()
             this.message = ''
@@ -94,7 +94,7 @@ export default {
         }
         .bulle{
             margin-top: 10px;
-            margin-left: -10px;
+            margin-left: -30px;
             width: 300px;
             padding-left: 30px;
             border: 1px solid;
