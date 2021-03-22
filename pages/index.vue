@@ -22,7 +22,7 @@
             </div>
             <br>
            
-            <div  class="butt"><b-button @click="addBasket(item, index)"> Ajouter au panier</b-button></div>
+            <div  class="but"><b-button @click="addBasket(item, index)"> Ajouter au panier</b-button></div>
               <div  class="inputNum">
                 <div class="qty">
                  <h5 v-if="item.checked">Article ajouté au panier {{item.qty}} fois</h5>
