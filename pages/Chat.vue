@@ -18,10 +18,13 @@
                   <label for="user">Utilisateur:</label>
                   <input type="text" v-model="user" class="form-control">
               </div>
-              <div class="gorm-group pb-3">
+              <div class="form-group">
                   <label for="message">Message:</label>
-                  <input type="text" v-model="message" class="form-control">
+                  <form>
+                  <textarea v-model="message" class="form-control"></textarea>
+                  </form>
               </div>
+              <br>
               <button type="submit" class="btn btn-success">Envoyer</button>
           </form>
             <br>
@@ -73,13 +76,12 @@ export default {
             this.message = ''
         },
         async getChats () {
+            
         const response = await ChatService.fetchChat()
         this.messages = response.data.chat
-        for (let i = 0; i <= this.messages.length; i++){
-            for (const property in this.messages[i] ){
-                console.log(Object.keys(this.messages[i]))
-            }
-        }
+        var newArr = this.messages.filter((person)=>(
+            
+            console.log(moment.locale('fr'),moment(person.timeStamp).calendar())))
        },
 
        async addChats () {
