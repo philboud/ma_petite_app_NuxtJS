@@ -1,7 +1,7 @@
 <template>
 <div>
       <div class="navfont">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <a class="navbar-brand" href="/"></a>
     <div class="butt">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbar-Nav" aria-expanded="false" aria-label="Toggle navigation" style="color : blue;">
@@ -43,7 +43,7 @@ export default {
 .butt{
    background-color:midnightblue !important;
    position:relative !important;
-   left: -600px !important;
+   left: -880px !important;
 }
 .navbar-nav li a{
   color:midnightblue !important;
