@@ -45,6 +45,7 @@ export default {
     name: 'Chat',
     data() {
         return {
+            timeStamp: '',
             user: '',
             message: '',
             messages: [],
@@ -52,7 +53,7 @@ export default {
         }
     },
         mounted() {
-            this.getChats()            
+            this.getChats() 
             this.socket.on('MESSAGE', (data) => {
             this.messages = [...this.messages, data];
              });
@@ -61,11 +62,12 @@ export default {
         sendMessage(e) {
             
             e.preventDefault();
-            moment.locale('fr')
+            moment.locale()
+            this.timeStamp = moment().format('LT')
             this.socket.emit('SEND_MESSAGE', {
                 user: this.user,
                 message: this.message,
-                timeStamp: moment().calendar(),
+                timeStamp: this.timeStamp
             });
             this.addChats()
             this.message = ''
@@ -73,14 +75,20 @@ export default {
         async getChats () {
         const response = await ChatService.fetchChat()
         this.messages = response.data.chat
+        for (let i = 0; i <= this.messages.length; i++){
+            for (const property in this.messages[i] ){
+                console.log(Object.keys(this.messages[i]))
+            }
+        }
        },
 
        async addChats () {
          await ChatService.addChat({
             user: this.user,
             message: this.message,
-            timeStamp: moment().format('LT')
+            timeStamp: Date.now()
       })
+      this.getChats()
     }
   }    
 }
