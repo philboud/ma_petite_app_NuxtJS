@@ -121,10 +121,10 @@ export default {
 }
 .cadre{
   display: block;
-  height: 900px;
+  height: 800px;
   overflow: auto;
 }
-title{
+.title{
    color: aliceblue;
 }
 input[type=number] {

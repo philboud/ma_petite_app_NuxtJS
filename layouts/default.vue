@@ -25,7 +25,7 @@ export default {
 
 <style>
 .showroom{
-  margin-top: 100px;
+  margin-top: 10px;
 }
 .container{
   margin-top: 50px;
@@ -44,7 +44,6 @@ export default {
 }
 .title{
   color: aliceblue;
-  margin-top: 50px;
 }
 .foot{
   position: relative;
