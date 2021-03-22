@@ -3,7 +3,7 @@
       <div class="navfont">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="/"></a>
-      <button class="butt" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbar-Nav" aria-expanded="false" aria-label="Toggle navigation" style="color : blue;">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbar-Nav" aria-expanded="false" aria-label="Toggle navigation" style="color : blue;">
     <span class="navbar-toggler-icon"></span>
   </button>
     <div class="collapse navbar-collapse" id="navbarNav">
@@ -38,7 +38,7 @@ export default {
 </script>
 
 <style>
-.butt{
+navbar-toggler{
    background-color:midnightblue !important;
 }
 .navbar-nav li a{
