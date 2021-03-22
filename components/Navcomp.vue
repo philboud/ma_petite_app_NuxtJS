@@ -1,13 +1,13 @@
 <template>
 <div>
       <div class="navfont">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="/"></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbar-Nav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="butt" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbar-Nav" aria-expanded="false" aria-label="Toggle navigation" style="color : blue;">
     <span class="navbar-toggler-icon"></span>
   </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
+    <ul class="navbar-nav" id="colorFont">
       <li class="nav-item active">
         <nuxt-link class="nav-link" to="/">Accueil</nuxt-link>
         </li>
@@ -38,6 +38,15 @@ export default {
 </script>
 
 <style>
+.butt{
+   background-color:midnightblue !important;
+}
+.navbar-nav li a{
+  color:midnightblue !important;
+}
+.bg-dark{
+  background-color: rgb(235, 177, 177) !important;
+}
 .back{
   margin:0;
   padding:0;
