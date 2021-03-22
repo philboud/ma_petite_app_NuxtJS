@@ -3,9 +3,11 @@
       <div class="navfont">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="/"></a>
+    <div class="butt">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbar-Nav" aria-expanded="false" aria-label="Toggle navigation" style="color : blue;">
     <span class="navbar-toggler-icon"></span>
   </button>
+  </div>
     <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav" id="colorFont">
       <li class="nav-item active">
@@ -38,8 +40,10 @@ export default {
 </script>
 
 <style>
-navbar-toggler{
+.butt{
    background-color:midnightblue !important;
+   position:relative !important;
+   left: -600px !important;
 }
 .navbar-nav li a{
   color:midnightblue !important;
