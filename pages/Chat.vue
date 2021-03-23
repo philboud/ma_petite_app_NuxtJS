@@ -79,10 +79,14 @@ export default {
             
         const response = await ChatService.fetchChat()
         this.messages = response.data.chat
-        var newArr = this.messages.filter((person)=>(
-            
-            console.log(moment.locale('fr'),moment(person.timeStamp).calendar())))
-       },
+        moment.locale('fr')
+        for(var i = 0; i < this.messages.length; i++){
+                    (this.messages[i].timeStamp = moment(this.messages[i].timeStamp).calendar())
+                console.log(this.messages[i])
+        //this.messages.filter((time)=>(
+               // console.log(moment.locale('fr'),moment(time.timeStamp).calendar())))
+            }
+        },
 
        async addChats () {
          await ChatService.addChat({
