@@ -93,7 +93,7 @@ export default {
       this.getProducts()
       this.productsTotal = []
       for(var i = 0; i<this.products.length; i++){
-        this.productsTotal.push(this.products[i].price * this.products[i].qty)
+        this.productsTotal.push(parseInt((this.products[i].price).replace(/\s/g,"")) * this.products[i].qty)
         } 
         if (this.productsTotal.length != 0){
         this.total = (this.productsTotal).reduce((a, b) => a + b)
@@ -106,7 +106,6 @@ export default {
        this.getProductsTotal()
     },
     changePriceOnClick (item,idx) {
-              
               localStorage.removeItem('panier')
               localStorage.setItem('panier', JSON.stringify(this.products))
               this.getProductsTotal()

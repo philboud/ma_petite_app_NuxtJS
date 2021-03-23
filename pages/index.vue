@@ -106,7 +106,6 @@ export default {
         this.products.push(this.productstmp)
       await localStorage.setItem('panier', JSON.stringify(this.products))
         item.checked = true
-      
       this.getProducts()
     }
   }
