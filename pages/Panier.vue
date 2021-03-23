@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <br>
      <div class="title">
       <h1>Votre panier</h1><br>
         <div class="total">
@@ -12,6 +11,7 @@
       <div class="vide">
       <h2 v-if="products.length === 0">(Vide)</h2>
       </div>
+      <div class="carformat">
         <div class="card mb-4" style="max-width: 400px;" v-for="(item, index) in products" :key="item._id">
           <div class="row no-gutters">
             <div class="col-md-5">
@@ -23,9 +23,8 @@
               <div class="card-body">
                 <h4 class="card-title"><strong>{{item.modele}}</strong></h4>
                 <p class="card-text"></p>
-                <h5>{{item.description}}</h5>
                 <div class="alignQty">
-                <h2>{{item.price}}€ </h2>
+                <h4>{{item.price}}€ </h4>
                   <input type="number" :min=1 @click="changePriceOnClick(item, index)" v-model="item.qty"/>
                   </div>
                   <div>
@@ -35,6 +34,7 @@
                </div>
             </div>
           </div>
+      </div>
       </div>
   </div>
   </div>
@@ -96,7 +96,7 @@ export default {
         this.productsTotal.push(parseInt((this.products[i].price).replace(/\s/g,"")) * this.products[i].qty)
         } 
         if (this.productsTotal.length != 0){
-        this.total = (this.productsTotal).reduce((a, b) => a + b)
+        this.total = (this.productsTotal).reduce((a, b) => a + b).toLocaleString()
         }
     },
     async deleteProduct (id, idx) {
@@ -126,20 +126,25 @@ export default {
 }
 </script>
 <style>
+.cardformat{
+  height: 400px;
+}
 .alignQty{
   float: right;
   margin-bottom: 20px;
 }
 .photo{
-  padding-left: 20px;
+  margin-left: 25px;
   padding-top: 20px
 }
 .vide{
   color:white;
 }
 .cadrePanier{
+  margin-top: 50px;
+  margin-left: 20px;
   display: block;
-  height: 900px;
+  height: 700px;
   overflow: auto;
 }
  .total{
@@ -148,13 +153,14 @@ export default {
     background-color: rgb(117, 159, 236);
     margin-top: 5px;
     margin-bottom: 10px;
-    margin-left: 100px;
+    margin-left: 20px;
     width: 300px;
     border:lightseagreen solid;
     text-align: center;
     color:blue
   }
   title{
-  color: aliceblue;
+    margin-left: 30px;
+    color: aliceblue;
 }
    </style>

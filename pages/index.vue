@@ -117,10 +117,12 @@ export default {
   border-radius: 30px;
 }
 .photo{
-  padding-left: 20px;
+  padding-left: 5px;
   padding-top: 20px
 }
 .cadre{
+  padding-left: 20px;
+  width: 400px;
   display: block;
   height: 800px;
   overflow: auto;

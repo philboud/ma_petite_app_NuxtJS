@@ -43,6 +43,7 @@ export default {
   background-clip: padding-box;
 }
 .title{
+  margin-left: 30px;
   color: aliceblue;
 }
 .foot{

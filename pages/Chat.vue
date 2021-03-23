@@ -105,10 +105,11 @@ export default {
             width: 400px;
         }
         .bulle{
+            list-style: none;
             margin-top: 10px;
-            margin-left: -30px;
-            width: 300px;
-            padding-left: 30px;
+            margin-left: -35px;
+            width: 280px;
+            padding-left: 10px;
             border: 1px solid;
             border-radius: 10px;
             background-color: aqua;
