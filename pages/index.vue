@@ -43,8 +43,6 @@
 <script>
 
 import RefimageService from '@/services/RefimageService'
-import BasketService from '@/services/BasketService'
-import Swal from 'sweetalert2'
 
 export default {
   name: 'Accueil',
@@ -70,6 +68,10 @@ export default {
     async getImage () {
       const response = await RefimageService.fetchRefimages()
       this.images = response.data.refimages
+       for(var i = 0; i < this.images.length; i++){
+                   this.images[i].prix = (this.images[i].prix.toLocaleString())
+            }
+      
     },
 
     async getProducts () {

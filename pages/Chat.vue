@@ -82,9 +82,6 @@ export default {
         moment.locale('fr')
         for(var i = 0; i < this.messages.length; i++){
                     (this.messages[i].timeStamp = moment(this.messages[i].timeStamp).calendar())
-                console.log(this.messages[i])
-        //this.messages.filter((time)=>(
-               // console.log(moment.locale('fr'),moment(time.timeStamp).calendar())))
             }
         },
 
