@@ -16,7 +16,7 @@
   >
     <b-carousel-slide  v-for="(item) in image" :key="item"
       caption=""
-      :img-src="(static_url + item +'.jpeg')"
+      :img-src="require('~/' + static_url + item +'.jpeg')"
     ></b-carousel-slide>
   </b-carousel>
 </div>
@@ -50,7 +50,7 @@ export default {
            }
           },
       visible: false,
-      static_url: '_nuxt/assets/images/',
+      static_url: 'assets/images/',
       images: []
       
     }
