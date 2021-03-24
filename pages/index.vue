@@ -20,6 +20,9 @@
     ></b-carousel-slide>
   </b-carousel>
 </div>
+<span>
+  Accedez au showroom
+</span>
 </div>
 </template>
 
@@ -63,7 +66,7 @@ export default {
       const response = await RefimageService.fetchRefimages()
       this.images = response.data.refimages
       for(var i = 0; i<this.images.length; i++){
-         this.image.push(this.images[i].image)
+         this.image.push(this.images[i].sticker)
       }
        console.log(this.image)
         }
