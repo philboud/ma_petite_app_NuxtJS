@@ -4,7 +4,10 @@
 <h4>
   Bienvenue sur LuxCar
 </h4>
-</div>
+<b-button type="success" @click="goToShowroom()">
+  Accedez au showroom
+</b-button>
+</div><br>
     <div class="carrousel">
   <b-carousel 
     id="carousel-fade"
@@ -20,9 +23,7 @@
     ></b-carousel-slide>
   </b-carousel>
 </div>
-<span>
-  Accedez au showroom
-</span>
+
 </div>
 </template>
 
@@ -61,6 +62,10 @@ export default {
   },
 
   methods: {
+
+    goToShowroom () {
+      this.$router.push('/showroom') 
+    },
 
     async getImage () {
       const response = await RefimageService.fetchRefimages()
