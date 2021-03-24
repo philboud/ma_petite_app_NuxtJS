@@ -27,6 +27,9 @@
     "socket.io": "^4.0.0",
     "socket.io-client": "^4.0.0",
     "sweetalert2": "^10.15.0",
+    "swiper": "^6.5.0",
+    "vue-awesome-swiper": "^4.1.1",
+    "vue-carousel": "^0.18.0",
     "vue-number-input-spinner": "^2.2.0"
   },
   "devDependencies": {}

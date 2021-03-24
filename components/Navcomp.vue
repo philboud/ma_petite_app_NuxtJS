@@ -10,8 +10,11 @@
   </div>
     <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav" id="colorFont">
-      <li class="nav-item active">
-        <nuxt-link class="nav-link" to="/">Accueil</nuxt-link>
+        <li class="nav-item">
+          <nuxt-link class="nav-link" to="/">Accueil</nuxt-link>
+        </li>
+         <li class="nav-item active">
+        <nuxt-link class="nav-link" to="/showroom">Showroom</nuxt-link>
         </li>
         <li class="nav-item">
           <nuxt-link class="nav-link" to="/addcar">Ajouter articles</nuxt-link>

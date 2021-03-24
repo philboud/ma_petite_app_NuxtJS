@@ -1,66 +1,60 @@
 <template>
 <div>
-  <br>
-  <h1 class="title">ShowRoom</h1>
-  <h5 class="title">Nombre d'article(s) dans le panier: {{article}}</h5>
-  <div class="cadre">
-    <div class="card-column">
-<div class="card mb-4" style="max-width: 700px;" v-for="(item, index) in images" :key="item._id">
-  <div class="row no-gutters">
-    <div class="col-md-5">
-      <div class="photo">
-      <img :src="require('~/' + static_url + item.sticker +'.jpeg')">
-    </div>
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title"><strong>{{item.modele}}</strong></h5>
-        <p class="card-text"></p>
-            <p>{{item.description}}</p>
-           <div>
-            <h2>{{item.prix}} €</h2>
-            </div>
-            <br>
-           
-            <div  class="but"><b-button @click="addBasket(item, index)"> Ajouter au panier</b-button></div>
-              <div  class="inputNum">
-                <div class="qty">
-                 <h5 v-if="item.checked">Article ajouté au panier {{item.qty}} fois</h5>
-              <label><strong>Quantité</strong></label>
-             <input type="number" id="qty" :min=1 class="style_input" value=1 v-model="item.qty">
-              </div>
-              </div>
-          </div>
-      </div>
-    </div>
-  </div>
+  <div class="title">
+<h4>
+  Bienvenue sur LuxCar
+</h4>
 </div>
+    <div class="carrousel">
+  <b-carousel 
+    id="carousel-fade"
+    style="text-shadow: 0px 0px 2px #000"
+    fade
+    :interval="3000"
+    img-width="1024"
+    img-height="480"
+  >
+    <b-carousel-slide  v-for="(item) in image" :key="item"
+      caption=""
+      :img-src="(static_url + item +'.jpeg')"
+    ></b-carousel-slide>
+  </b-carousel>
 </div>
-<br>
 </div>
 </template>
 
 <script>
 
 import RefimageService from '@/services/RefimageService'
+import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper'
+import 'swiper/swiper-bundle.css'
 
 export default {
+  components: {
+    Swiper,
+    SwiperSlide
+  },
+  directives: {
+    swiper: directive
+  },
   name: 'Accueil',
   data () {
     return {
-      products: [],
-      productstmp: [],
-      productsBask: [],
+      image: [],
+      swiperOption: {
+          pagination: {
+            el: '.swiper-pagination'
+           }
+          },
       visible: false,
-      static_url: 'assets/images/',
-      images: [],
-      article: [],
-      qteArticle: []
+      static_url: '_nuxt/assets/images/',
+      images: []
+      
     }
   },
   mounted () {
     this.getImage()
-    this.getProducts()
+   
   },
 
   methods: {
@@ -68,75 +62,21 @@ export default {
     async getImage () {
       const response = await RefimageService.fetchRefimages()
       this.images = response.data.refimages
-       for(var i = 0; i < this.images.length; i++){
-                   this.images[i].prix = (this.images[i].prix.toLocaleString())
-            }
-      
-    },
-
-    async getProducts () {
-      
-      this.products = JSON.parse(localStorage.getItem('panier'))
-       if ( this.products == null ){ this.products = [] } else {
-         for (let i=0; i<this.products.length; i++){
-       this.qteArticle.push(parseInt(this.products[i].qty))
-        }
+      for(var i = 0; i<this.images.length; i++){
+         this.image.push(this.images[i].image)
       }
-       if (this.qteArticle.length == 0) {
-          this.article = 0
-        } else {
-      this.article = this.qteArticle.reduce((a, b) => a + b)
-      this.qteArticle = []
-      }
-    },
-
-    async addBasket (item) {
-      
-      if(item.qty === undefined) {
-        item.qty = 1
-      } 
-        this.productstmp = {
-        id_origin: item._id,
-        sticker: item.sticker,
-        modele: item.modele,
-        description: item.description,
-        price: item.prix,
-        qty: item.qty
+       console.log(this.image)
         }
-        this.products.push(this.productstmp)
-      await localStorage.setItem('panier', JSON.stringify(this.products))
-        item.checked = true
-      this.getProducts()
-    }
   }
 }
 </script>
 <style>
-.card{
-  background-color: rgb(191, 235, 202);
-  border-radius: 30px;
-}
-.photo{
-  padding-left: 5px;
-  padding-top: 20px
-}
-.cadre{
-  padding-left: 20px;
-  width: 400px;
-  display: block;
-  height: 800px;
-  overflow: auto;
-}
 .title{
-   color: aliceblue;
+  color:azure;
 }
-input[type=number] {
-  width: 120px;
-  height: 100px;
-  font-size: 20px;
+.carrousel{
+  color:azure;
+  width: 300px;
+  height: 250px;
 }
-.inputNum{
-  float: right;
-  margin-bottom: 20px;
-}
- </style>
+</style>
