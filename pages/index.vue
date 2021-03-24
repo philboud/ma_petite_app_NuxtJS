@@ -1,10 +1,12 @@
 <template>
 <div>
-  <div class="title">
+  <div class="outer">
+  <div class="subtitle">
+    <div class="butcarrous">
 <h4>
   Bienvenue sur LuxCar
-</h4>
-<b-button type="success" @click="goToShowroom()">
+</h4><br>
+<b-button @click="goToShowroom()">
   Accedez au showroom
 </b-button>
 </div><br>
@@ -23,7 +25,8 @@
     ></b-carousel-slide>
   </b-carousel>
 </div>
-
+</div>
+</div>
 </div>
 </template>
 
@@ -79,12 +82,23 @@ export default {
 }
 </script>
 <style>
-.title{
+.outer{
+  width: 400px;
+
+}
+.subtitle{
   color:azure;
+  padding: 20px;
+  text-align: center;
+}
+.butcarrous{
+  display: inline-block;
+  padding: 40px;
 }
 .carrousel{
   color:azure;
   width: 300px;
   height: 250px;
+  margin-left: 30px;
 }
 </style>
