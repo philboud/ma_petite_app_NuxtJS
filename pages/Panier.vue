@@ -9,7 +9,7 @@
     </div>
     <div class="cadrePanier">
       <div class="vide">
-      <h2 v-if="products.length === 0">(Vide)</h2>
+      <button v-if="products.length === 0" @click="goBackShowroom()">(Panier vide cliquer pour retournier au Showroom)</button>
       </div>
       <div class="carformat">
         <div class="card mb-4" style="max-width: 400px;" v-for="(item, index) in products" :key="item._id">
@@ -58,9 +58,9 @@ export default {
     }
   },
   mounted () {
-    if(localStorage.getItem('panier') == null) {
+    if(localStorage.getItem('panier') === null) {
       this.products = []
-    }
+   }
     this.getProducts()
     this.getProductsTotal()
   },
@@ -85,6 +85,9 @@ export default {
           )
         }
       })
+         if (this.total === 0) {
+             
+          }
     },
     async getProducts () {
       this.products = JSON.parse(localStorage.getItem('panier'))
@@ -92,6 +95,7 @@ export default {
     async getProductsTotal () {
       if(localStorage.getItem('panier') === null){
         this.total = 0
+        
       }
       this.getProducts()
       this.productsTotal = []
@@ -100,6 +104,8 @@ export default {
         } 
         if (this.productsTotal.length != 0){
         this.total = (this.productsTotal).reduce((a, b) => a + b).toLocaleString()
+        }else{
+          this.total = 0
         }
     },
     async deleteProduct (id, idx) {
@@ -124,6 +130,9 @@ export default {
 
     validationBasket () {
       this.$router.push('Validation')
+    },
+    goBackShowroom () {
+      this.$router.push('Showroom')
     }
   }
 }
