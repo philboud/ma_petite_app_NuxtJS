@@ -17,9 +17,6 @@
         <nuxt-link class="nav-link" to="/showroom">Showroom</nuxt-link>
         </li>
         <li class="nav-item">
-          <nuxt-link class="nav-link" to="/addcar">Ajouter articles</nuxt-link>
-        </li>
-        <li class="nav-item">
           <nuxt-link class="nav-link" to="/panier">Panier</nuxt-link>
         </li>
         <li class="nav-item">

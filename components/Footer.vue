@@ -12,8 +12,9 @@
     <div class="col-sm">
       <h4>Navigation</h4>
             <nuxt-link class="nav-link" to="/">Accueil</nuxt-link>
-            <nuxt-link class="nav-link" to="/addCar">Ajouter un article</nuxt-link>
+            <nuxt-link class="nav-link" to="/showroom">Showroom</nuxt-link>
             <nuxt-link class="nav-link" to="/panier">Panier</nuxt-link>
+            <nuxt-link class="nav-link" to="/validation">Validation</nuxt-link>
     </div>
     <div class="col-sm">
       <h4>Coordonnées</h4>
