@@ -27,7 +27,10 @@
                 <div class="qty">
                  <h5 v-if="item.checked">Article ajouté au panier {{item.qty}} fois</h5>
               <label><strong>Quantité</strong></label>
-             <input type="number" id="qty" :min=1 class="style_input" value=1 v-model="item.qty">
+             <select class="form-control" v-model="item.nb">
+               <option v-for="nb in data" :key="nb">{{nb}}</option>
+             </select>
+
               </div>
               </div>
           </div>
@@ -55,7 +58,9 @@ export default {
       static_url: 'assets/images/',
       images: [],
       article: [],
-      qteArticle: []
+      qteArticle: [],
+      data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      nb: ''
     }
   },
   mounted () {
@@ -101,7 +106,7 @@ export default {
         modele: item.modele,
         description: item.description,
         price: item.prix,
-        qty: item.qty
+        qty: item.nb
         }
         this.products.push(this.productstmp)
       await localStorage.setItem('panier', JSON.stringify(this.products))
