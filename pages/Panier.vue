@@ -25,7 +25,9 @@
                 <p class="card-text"></p>
                 <div class="alignQty">
                 <h4>{{item.price}}€ </h4>
-                  <input type="number" :min=1 @click="changePriceOnClick(item, index)" v-model="item.qty"/>
+                  <select class="form-control" @change="changePriceOnClick(item, index)" v-model="item.qty">
+                   <option v-for="nb in data" :key="nb">{{nb}}</option>
+                   </select>
                   </div>
                   <div>
                     <br><br>
@@ -51,7 +53,8 @@ export default {
       products: [],
       productsTotal: [],
       total: '',
-      static_url: 'assets/images/'
+      static_url: 'assets/images/',
+      data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     }
   },
   mounted () {

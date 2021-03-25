@@ -26,12 +26,11 @@
               <div  class="inputNum">
                 <div class="qty">
                  <h5 v-if="item.checked">Article ajouté au panier {{item.qty}} fois</h5>
+                </div> 
               <label><strong>Quantité</strong></label>
              <select class="form-control" v-model="item.nb">
                <option v-for="nb in data" :key="nb">{{nb}}</option>
              </select>
-
-              </div>
               </div>
           </div>
       </div>
@@ -59,8 +58,7 @@ export default {
       images: [],
       article: [],
       qteArticle: [],
-      data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-      nb: ''
+      data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     }
   },
   mounted () {
@@ -95,10 +93,13 @@ export default {
       }
     },
 
-    async addBasket (item) {
+    async addBasket (item,data) {
       
       if(item.qty === undefined) {
         item.qty = 1
+        if (item.nb === undefined) {
+          item.nb = 1
+        }
       } 
         this.productstmp = {
         id_origin: item._id,
