@@ -6,6 +6,8 @@
 <h4>
   Bienvenue sur LuxCar
 </h4><br>
+<label for="user">Nom d'utilisateur</label>
+<input class="userName" v-model="user"><br><br>
 <b-button @click="goToShowroom()">
   Accedez au showroom
 </b-button>
@@ -35,6 +37,7 @@
 import RefimageService from '@/services/RefimageService'
 import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper'
 import 'swiper/swiper-bundle.css'
+import Swal from 'sweetalert2'
 
 export default {
   components: {
@@ -47,16 +50,16 @@ export default {
   name: 'Accueil',
   data () {
     return {
-      image: [],
       swiperOption: {
           pagination: {
             el: '.swiper-pagination'
            }
           },
       visible: false,
-      static_url: 'assets/images/',
-      images: []
-      
+      static_url: 'assets/images/', 
+      image: [],
+      images: [],
+      user: ''
     }
   },
   mounted () {
@@ -67,7 +70,12 @@ export default {
   methods: {
 
     goToShowroom () {
-      this.$router.push('/showroom') 
+      if (this.user === '') {
+        Swal.fire('Saisir un nom d utilisateur')
+      } else {
+      localStorage.setItem('user', this.user)
+      this.$router.push('/showroom')
+      }
     },
 
     async getImage () {
@@ -76,17 +84,20 @@ export default {
       for(var i = 0; i<this.images.length; i++){
          this.image.push(this.images[i].sticker)
       }
-       console.log(this.image)
-        }
+    }
   }
 }
 </script>
 <style>
+.userName{
+  text-align: center;
+}
 .outer{
   width: 400px;
 
 }
 .subtitle{
+  text-align: center;
   color:azure;
   padding: 20px;
   text-align: center;

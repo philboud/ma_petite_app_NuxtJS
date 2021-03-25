@@ -1,10 +1,11 @@
 <template>
-<div class="cadre">
+<div class="cadrechat">
   <div class="card mt-3">
       <div class="card-body">
           <div class="card-title">
-              <h3>Chat Group (en cours de réalisation)</h3>
-              <hr>
+              <h3>Chat Group</h3>
+              <br>
+              <h4>N'hésitez pas à laisser vos commentaires</h4>
           </div>
           <div class="card-body">
               <div class="messages">
@@ -28,9 +29,8 @@
               <button type="submit" class="btn btn-success">Envoyer</button>
           </form>
             <br>
-                              <div id="messageForm">
-
-                     <ul v-for="(item, id) in messages" :key="id">
+                <div id="messageForm">
+                    <ul v-for="(item, id) in messages" :key="id">
                         <div class="bulle"><li>{{item.user}}:<br>{{item.message}}<br>{{item.timeStamp}}<br><br></li></div>
                          </ul>
                 </div>
@@ -56,10 +56,11 @@ export default {
         }
     },
         mounted() {
+            this.user = localStorage.getItem('user')
             this.getChats() 
             this.socket.on('MESSAGE', (data) => {
-            this.messages = [...this.messages, data];
-             });
+            this.messages = [data, ...this.messages];
+           });
     },
  methods: {
         sendMessage(e) {
@@ -97,13 +98,17 @@ export default {
 }
     </script>
 
-    <style>
+    <style scoped>
         #messageForm{
             border: 1px solid;
         }
-        .cadre{
+        .cadrechat{
+            padding-left: 20px;
             width: 400px;
-        }
+            display: block;
+            height: 800px;
+            overflow: auto;
+            }
         .bulle{
             list-style: none;
             margin-top: 10px;
