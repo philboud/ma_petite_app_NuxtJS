@@ -6,8 +6,8 @@
 <h4>
   Bienvenue sur LuxCar
 </h4><br>
-<label for="user">Nom d'utilisateur</label>
-<input class="userName" v-model="user"><br><br>
+<label for="user">Nom d'utilisateur </label>
+<input placeholder="pseudo (n importe lequel)" class="userName" v-model="user"><br><br>
 <b-button @click="goToShowroom()">
   Accedez au showroom
 </b-button>
@@ -64,10 +64,16 @@ export default {
   },
   mounted () {
     this.getImage()
-   
+    this.getUser()
   },
 
   methods: {
+    
+    getUser () {
+      if (this.user === '') {
+        this.user = localStorage.getItem('user')
+      }
+    },
 
     goToShowroom () {
       if (this.user === '') {
