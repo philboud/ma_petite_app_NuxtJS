@@ -6,7 +6,7 @@
 <h4>
   Bienvenue sur LuxCar
 </h4><br>
-<label for="user">Nom d'utilisateur </label>
+<label for="user">Nom d'utilisateur </label><br>
 <input placeholder="pseudo (n importe lequel)" class="userName" v-model="user"><br><br>
 <b-button @click="goToShowroom()">
   Accedez au showroom
@@ -103,8 +103,7 @@ export default {
   text-align: center;
 }
 .outer{
-  width: 400px;
-
+  width: 600px;
 }
 .subtitle{
   text-align: center;
@@ -117,9 +116,9 @@ export default {
   padding: 40px;
 }
 .carrousel{
+  display: inline-block;
   color:azure;
-  width: 300px;
+  width: 400px;
   height: 250px;
-  margin-left: 30px;
-}
+ }
 </style>
