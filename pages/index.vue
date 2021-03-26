@@ -59,7 +59,8 @@ export default {
       static_url: 'assets/images/', 
       image: [],
       images: [],
-      user: ''
+      user: '',
+      panier: []
     }
   },
   mounted () {
@@ -72,6 +73,9 @@ export default {
     getUser () {
       if (this.user === '') {
         this.user = localStorage.getItem('user')
+      }
+      if(localStorage.getItem('panier') === null){
+        localStorage.setItem('panier', JSON.stringify(this.panier))
       }
     },
 

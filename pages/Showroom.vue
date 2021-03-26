@@ -78,27 +78,28 @@ export default {
     },
 
     async getProducts () {
-      
       this.products = JSON.parse(localStorage.getItem('panier'))
-       if ( this.products == null ){ this.products = [] } else {
-         for (let i=0; i<this.products.length; i++){
-       this.qteArticle.push(parseInt(this.products[i].qty))
-        }
-      }
+        if ( this.products == null ){ this.products = [] } else {
+          for (let i = 0; i < this.products.length; i ++){
+            this.qteArticle.push(parseInt(this.products[i].qty))
+           }
+         }
        if (this.qteArticle.length == 0) {
-          this.article = 0
-        } else {
-      this.article = this.qteArticle.reduce((a, b) => a + b)
-      this.qteArticle = []
-      }
+            this.article = 0
+          } else {
+            this.article = this.qteArticle.reduce((a, b) => a + b)
+            this.qteArticle = []
+         }
     },
 
-    async addBasket (item,data) {
-      
+    async addBasket (item) {
+      this.products = JSON.parse(localStorage.getItem('panier'))
       if(item.qty === undefined) {
-        item.qty = 1
-        if (item.nb === undefined) {
+          item.qty = 1
+      if (item.nb === undefined) {
           item.nb = 1
+        }else{
+          item.qty = item.nb
         }
       } 
         this.productstmp = {
@@ -109,12 +110,17 @@ export default {
         price: item.prix,
         qty: item.nb
         }
-        this.products.push(this.productstmp)
-      await localStorage.setItem('panier', JSON.stringify(this.products))
-        item.checked = true
-      this.getProducts()
-    }
-  }
+        for (var i = 0; i < this.products.length; i ++) {
+          if (this.productstmp.modele === this.products[i].modele) {
+            this.productstmp.qty = parseInt(this.products[i].qty) + parseInt(item.nb)
+            this.products.splice([i],1)
+            }}
+          this.products.push(this.productstmp)
+             await localStorage.setItem('panier', JSON.stringify(this.products))
+            item.checked = true
+           this.getProducts()
+          }
+        }
 }
 </script>
 <style>
