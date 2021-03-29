@@ -134,7 +134,7 @@ export default {
   background-color: rgb(191, 235, 202);
   border-radius: 30px;
   width: auto;
-  height: auto;
+  height: 600px !important;
   text-align: left;
 }
 .photo{
