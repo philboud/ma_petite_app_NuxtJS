@@ -27,7 +27,7 @@ methods: {
                 }).then((result) => {
                     if (result.isConfirmed) {
                     localStorage.setItem('panier', JSON.stringify(this.products)),
-                this.$router.push('/')    
+                this.$router.push('/Showroom')
                 }
             })
         }

@@ -5,6 +5,7 @@
         <div class="total">
            <b-button @click="validationBasket()"><h3>Valider votre panier</h3></b-button>
       <h2><strong>Total: </strong>{{total}}€</h2>
+      <b-button @click="emptyBasket()">Vider le panier</b-button>
   </div>
     </div>
     <div class="cadrePanier">
@@ -50,6 +51,7 @@ export default {
   name: 'basket',
   data () {
     return {
+      panier: [],
       products: [],
       productstmp: [],
       productsTotal: [],
@@ -124,6 +126,11 @@ export default {
          }
    
     },
+    emptyBasket () {
+      localStorage.removeItem('panier')
+      localStorage.setItem('panier', JSON.stringify(this.panier))
+      this.$router.push('/Showroom') 
+    },
 
     async changePrice (item,idx) {
         this.getProductsTotal()
@@ -166,6 +173,7 @@ export default {
     border-radius: 20px;
     background-color: rgb(117, 159, 236);
     margin-top: 5px;
+    padding-bottom: 10px;
     margin-bottom: 10px;
     margin-left: 20px;
     width: 300px;
