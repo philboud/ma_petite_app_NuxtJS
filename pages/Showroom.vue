@@ -1,8 +1,12 @@
 <template>
-<div>
+<div class="container">
+  <div class="row">
+    <div class="col-auto col-sm col-md">
   <br>
-  <h1 class="title">ShowRoom</h1>
-  <h5 class="title">Nombre d'article(s) dans le panier: {{article}}</h5>
+  <div class="title">
+  <h1>ShowRoom</h1>
+  <h5>Nombre d'article(s) dans le panier: {{article}}</h5>
+  </div>
   <div class="cadre">
     <div class="card-column">
 <div class="card mb-4" style="max-width: 700px;" v-for="(item, index) in images" :key="item._id">
@@ -32,6 +36,8 @@
                <option v-for="nb in data" :key="nb">{{nb}}</option>
              </select>
               </div>
+          </div>
+          </div>
           </div>
       </div>
     </div>
@@ -134,14 +140,11 @@ export default {
   padding-top: 20px
 }
 .cadre{
-  padding-left: 20px;
+  margin-left: 10px;
   width: 400px;
-  display: block;
+  display: inline-block;
   height: 800px;
   overflow: auto;
-}
-.title{
-   color: aliceblue;
 }
 input[type=number] {
   width: 120px;

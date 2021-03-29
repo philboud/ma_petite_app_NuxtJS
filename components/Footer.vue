@@ -35,6 +35,7 @@
 
 <style>
 .footerColor{
+    padding-left: 30px;
     height:auto;
     border: 1px solid;
     }

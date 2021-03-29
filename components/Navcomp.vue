@@ -43,10 +43,11 @@ export default {
 .butt{
    background-color:midnightblue !important;
    position:relative !important;
-   left: -880px !important;
 }
 .navbar-nav li a{
   color:midnightblue !important;
+  margin-left: 10px;
+
 }
 .bg-dark{
   background-color: rgb(235, 177, 177) !important;

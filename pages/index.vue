@@ -1,17 +1,19 @@
 <template>
-<div>
-  <div class="outer">
-  <div class="subtitle">
-    <div class="butcarrous">
-<h4>
-  Bienvenue sur LuxCar
-</h4><br>
-<label for="user">Nom d'utilisateur </label><br>
+<div class="container">
+  <div class="row">
+    <div class="col-sm col-md">
+  <div>
+  <div>
+    <div class="subtitle">
+      <h4>Bienvenue sur LuxCar</h4><br>
+   <label for="user">Nom d'utilisateur </label><br>
+  </div>
 <input placeholder="pseudo (n importe lequel)" class="userName" v-model="user"><br><br>
 <b-button @click="goToShowroom()">
   Accedez au showroom
 </b-button>
 </div><br>
+</div>
     <div class="carrousel">
   <b-carousel 
     id="carousel-fade"
@@ -26,7 +28,8 @@
       :img-src="require('~/' + static_url + item +'.jpeg')"
     ></b-carousel-slide>
   </b-carousel>
-</div>
+  </div>
+
 </div>
 </div>
 </div>
@@ -99,26 +102,19 @@ export default {
 }
 </script>
 <style>
-.userName{
-  text-align: center;
-}
-.outer{
-  width: 600px;
-}
+
 .subtitle{
-  text-align: center;
   color:azure;
-  padding: 20px;
-  text-align: center;
 }
 .butcarrous{
   display: inline-block;
   padding: 40px;
 }
 .carrousel{
+  margin-left: 15px;  
   display: inline-block;
   color:azure;
-  width: 400px;
-  height: 250px;
+  width: 390px;
+  height: 350px;
  }
 </style>

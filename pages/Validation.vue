@@ -19,26 +19,25 @@ export default {
       },
 methods: {
     onclick () {
-Swal.fire({
-  title: 'Dommage...!',
-  text: "Votre compte en banque semble un peu maigre, merci de le ré-approvisionner!!!",
-  icon: 'warning',
-  showCancelButton: false
-}).then((result) => {
-  if (result.isConfirmed) {
-       localStorage.setItem('panier', JSON.stringify(this.products)),
-       this.$router.push('/')    
-  }
-})
-
+            Swal.fire({
+                title: 'Dommage...!',
+                text: "Votre compte en banque semble un peu maigre, merci de le ré-approvisionner!!!",
+                icon: 'warning',
+                showCancelButton: false
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                    localStorage.setItem('panier', JSON.stringify(this.products)),
+                this.$router.push('/')    
+                }
+            })
+        }
     }
-}
 }
 </script>
 <style>
 h1{
     color: white;
-    margin-top: 50px;
+    margin-top: 10px;
 }
 .cadre{
     float: center;

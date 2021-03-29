@@ -1,8 +1,8 @@
 <template>
-<div class="container">
+<div>
   <div class="back">
     <Navcomp />
-<div class="showroom">
+<div>
       <Nuxt />
   </div>
    </div>
@@ -24,17 +24,16 @@ export default {
 </script>
 
 <style>
-.showroom{
-  margin-top: 10px;
-}
 .container{
-  margin-top: 50px;
-  width: 1000px;
+  padding-top: 30px;
+  text-align: center;
 }
 .back{
   margin:0;
+  margin-left: -20px;
   padding:0;
   position:relative;
+  width: auto;
   height: 1200px;
   background-image: url('~assets/images/fond.jpeg');
   background-size: cover;
@@ -43,13 +42,13 @@ export default {
   background-clip: padding-box;
 }
 .title{
-  margin-left: 30px;
   color: aliceblue;
 }
 .foot{
+  margin-left: -20px;
   position: relative;
   bottom:0;
-  width:100%;
+  width:auto;
   height:auto;
 }
 </style>

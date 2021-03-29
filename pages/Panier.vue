@@ -9,7 +9,7 @@
     </div>
     <div class="cadrePanier">
       <div class="vide">
-      <button v-if="products.length === 0" @click="goBackShowroom()">(Panier vide cliquer pour retournier au Showroom)</button>
+      <button v-if="products.length === 0" @click="goBackShowroom()">(Panier vide cliquer pour retourner au Showroom)</button>
       </div>
       <div class="carformat">
         <div class="card mb-4" style="max-width: 400px;" v-for="(item, index) in products" :key="item._id">
