@@ -9,7 +9,7 @@
   </div>
   <div class="cadre">
     <div class="card-column">
-<div class="card mb-4" style="max-width: 700px;" v-for="(item, index) in images" :key="item._id">
+<div class="card mb-4" v-for="(item, index) in images" :key="item._id">
   <div class="row no-gutters">
     <div class="col-md-5">
       <div class="photo">
@@ -133,6 +133,9 @@ export default {
 .card{
   background-color: rgb(191, 235, 202);
   border-radius: 30px;
+  width: auto;
+  height: auto;
+  text-align: left;
 }
 .photo{
   width: 200px;
@@ -140,8 +143,8 @@ export default {
   padding-top: 20px
 }
 .cadre{
-  margin-left: 10px;
-  width: 400px;
+  margin-left: 20px;
+  width: auto;
   display: inline-block;
   height: 800px;
   overflow: auto;

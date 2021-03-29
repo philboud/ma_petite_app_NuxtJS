@@ -26,6 +26,7 @@ export default {
 <style>
 .container{
   padding-top: 30px;
+  display: inline-block;
   text-align: center;
 }
 .back{

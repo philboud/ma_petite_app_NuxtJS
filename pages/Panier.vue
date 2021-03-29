@@ -12,7 +12,7 @@
       <button v-if="products.length === 0" @click="goBackShowroom()">(Panier vide cliquer pour retourner au Showroom)</button>
       </div>
       <div class="carformat">
-        <div class="card mb-4" style="max-width: 400px;" v-for="(item, index) in products" :key="item._id">
+        <div class="card mb-4"  v-for="(item, index) in products" :key="item._id">
           <div class="row no-gutters">
             <div class="col-md-5">
               <div class="photo">
@@ -139,8 +139,9 @@ export default {
 }
 </script>
 <style>
-.cardformat{
+.card{
   height: 400px;
+  width:auto;
 }
 .alignQty{
   float: right;
@@ -157,7 +158,7 @@ export default {
   margin-top: 50px;
   margin-left: 20px;
   display: block;
-  height: 700px;
+  height: 660px;
   overflow: auto;
 }
  .total{

@@ -1,4 +1,5 @@
 <template>
+<div class="container">
 <div class="cadrechat">
   <div class="card mt-3">
       <div class="card-body">
@@ -30,9 +31,10 @@
           </form>
             <br>
                 <div id="messageForm">
-                    <ul v-for="(item, id) in messages" :key="id">
+                    <ul class="ulbulle" v-for="(item, id) in messages" :key="id">
                         <div class="bulle"><li>{{item.user}}:<br>{{item.message}}<br>{{item.timeStamp}}<br><br></li></div>
                          </ul>
+                    </div>
                 </div>
          </div>
     </div>
@@ -101,19 +103,25 @@ export default {
     <style scoped>
         #messageForm{
             border: 1px solid;
-        }
+            margin-left:5px;
+         }
         .cadrechat{
-            padding-left: 20px;
-            width: 400px;
-            display: block;
+            
+            margin-left: 20px;
+            width: auto;
             height: 800px;
             overflow: auto;
             }
+            .ulbulle{
+                margin-left: -40px;
+                margin-right: 5px;
+            }
         .bulle{
+            margin-left: 5px;
+            text-align: left;
             list-style: none;
             margin-top: 10px;
-            margin-left: -35px;
-            width: 280px;
+            width: auto;
             padding-left: 10px;
             border: 1px solid;
             border-radius: 10px;
