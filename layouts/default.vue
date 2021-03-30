@@ -1,7 +1,10 @@
 <template>
-<div>
+<div class="container">
+
+ 
+ 
   <div class="back">
-    <Navcomp />
+     <Navcomp />
 <div>
       <Nuxt />
   </div>
@@ -24,22 +27,23 @@ export default {
 </script>
 
 <style>
+body{
+
+  margin-left: -30px !important;
+  }
 .container{
-  padding-top: 30px;
-  display: inline-block;
+  width: 3160px !important;
+  max-width: 100% !important;
+  padding-top: 20px;
   text-align: center;
-}
+  }
 .back{
-  margin:0;
-  margin-left: -20px;
-  padding:0;
-  position:relative;
   width: auto;
-  height: 1200px;
+  top: 50px;
+  overflow: auto;
   background-image: url('~assets/images/fond.jpeg');
   background-size: cover;
   background-repeat: no-repeat;
-  background-attachment: fixed;
   background-clip: padding-box;
 }
 .title{

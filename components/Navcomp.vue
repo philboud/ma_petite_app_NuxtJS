@@ -1,8 +1,6 @@
 <template>
-<div>
-      <div class="navfont">
-  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-    <a class="navbar-brand" href="/"></a>
+<div class="container">
+  <nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark">
     <div class="butt">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbar-Nav" aria-expanded="true" aria-label="Toggle navigation" style="color : blue;">
     <span class="navbar-toggler-icon"></span>
@@ -11,22 +9,21 @@
     <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav" id="colorFont">
         <li class="nav-item">
-          <nuxt-link class="nav-link" to="/">Accueil</nuxt-link>
+          <nuxt-link class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" to="/">Accueil</nuxt-link>
         </li>
          <li class="nav-item active">
-        <nuxt-link class="nav-link" to="/showroom">Showroom</nuxt-link>
+        <nuxt-link class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" to="/showroom">Showroom</nuxt-link>
         </li>
         <li class="nav-item">
-          <nuxt-link class="nav-link" to="/panier">Panier</nuxt-link>
+          <nuxt-link class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" to="/panier">Panier</nuxt-link>
         </li>
         <li class="nav-item">
-          <nuxt-link class="nav-link" to="/chat">Chat</nuxt-link>
+          <nuxt-link class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" to="/chat">Chat</nuxt-link>
         </li>
         </ul>
         </div>
      </nav>
        </div>
-   </div>
 </template>
 
 <script>
@@ -40,6 +37,7 @@ export default {
 </script>
 
 <style>
+
 .butt{
    background-color:midnightblue !important;
    position:relative !important;
@@ -51,17 +49,6 @@ export default {
 }
 .bg-dark{
   background-color: rgb(235, 177, 177) !important;
-}
-.back{
-  margin:0;
-  padding:0;
-  position:relative;
-  height: 1200px;
-  background-image: url('~assets/images/fond.jpeg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-clip: padding-box;
 }
 .title{
   color: aliceblue;

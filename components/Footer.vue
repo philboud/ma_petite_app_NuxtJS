@@ -1,14 +1,13 @@
 <template>
-
-<div class="footerColor">
-  <div class="row">
-    <div class="col-sm">
-      <h4>Services</h4>
-      <div>
-        <p>Ventes</p>
-        <p>Service après-vente</p>
+  <div class="footerColor">
+    <div class="row">
+      <div class="col-sm">
+        <h4>Services</h4>
+        <div>
+          <p>Ventes</p>
+          <p>Service après-vente</p>
+        </div>
       </div>
-    </div>
     <div class="col-sm">
       <h4>Navigation</h4>
             <nuxt-link class="nav-link" to="/">Accueil</nuxt-link>

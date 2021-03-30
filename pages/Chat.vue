@@ -6,7 +6,6 @@
           <div class="card-title">
               <h3>Chat Group</h3>
               <br>
-              <h4>N'hésitez pas à laisser vos commentaires</h4>
           </div>
           <div class="card-body">
               <div class="messages">
@@ -14,13 +13,13 @@
               </div>
           </div>
       </div>
-      <div class="card-footer">
+         <div class="card-footer">
           <form @submit.prevent="sendMessage">
               <div class="form-group">
                   <label for="user">Utilisateur:</label>
                   <input type="text" v-model="user" class="form-control">
               </div>
-              <div class="form-group">
+              <div class="form-group"><br><br>
                   <label for="message">Message:</label>
                   <form>
                   <textarea v-model="message" class="form-control"></textarea>
@@ -101,16 +100,20 @@ export default {
     </script>
 
     <style scoped>
+    .card{
+        overflow: auto;
+    }
+    .card-footer{
+        border-top: 0mm !important;
+    }
         #messageForm{
-            border: 1px solid;
+            height: auto;
             margin-left:5px;
-         }
+        }
         .cadrechat{
-            
             margin-left: 20px;
             width: auto;
-            height: 800px;
-            overflow: auto;
+            height: auto;
             }
             .ulbulle{
                 margin-left: -40px;

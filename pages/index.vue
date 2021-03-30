@@ -114,7 +114,7 @@ export default {
   margin-left: 15px;  
   display: inline-block;
   color:azure;
-  width: 390px;
-  height: 350px;
+  width: 360px;
+  height: 300px;
  }
 </style>
